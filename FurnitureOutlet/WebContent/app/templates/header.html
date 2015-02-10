@@ -1,0 +1,16 @@
+<div id="wrap">
+    <div id="header">
+        <h1 id="headerTitle">
+          <a href="{{headerCtrl.titleClickTarget}}" title="{{headerCtrl.title}}"></a>
+        </h1>
+        <p id="headerDescription">Wisconsin's Best Priced Furniture Store</p>
+    </div>
+
+    <div id="mainMenu">
+        <ul>
+            <li ng-repeat="item in headerCtrl.menuItems track by $index">
+                <a href="{{item.target}}" ng-class="{'active': $index == headerCtrl.activeIndex}">{{item.caption}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

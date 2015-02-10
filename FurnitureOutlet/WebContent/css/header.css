@@ -1,0 +1,74 @@
+@CHARSET "UTF-8";
+#header
+{
+    background-color: #F8E000; 
+    background-image: url(../assets/brfo_header.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    overflow: hidden;
+}
+
+#headerTitle a 
+{
+    display: block;
+    float: left;
+    height: 120px;
+    overflow: hidden;
+    padding: 0;
+    width: 90%;
+    margin-left: 5%;
+}
+
+
+#headerDescription 
+{
+    display: none;
+}
+
+#mainMenu 
+{   
+    background-image: url(../assets/navbackground.png);  /* use a small image background if neither of the gradients are supported. */
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f27e6d), to(#ef1b00), to(#f41e02), to(#e54a12), to(#ed1700), to(#ea1300), to(#e06d64));
+    background-image: -moz-linear-gradient(19% 75% 90deg, #f27e6d, #e06d64);
+    font-size:16px;
+    line-height: 1.5;
+    display: block;
+}
+
+#mainMenu ul
+{
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 10px; 
+}
+
+#mainMenu li, a
+{
+    display: inline;
+    list-style-type: none;
+    padding-top: 15px;
+    padding-right: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    color:#fff;
+    text-decoration: none;
+    white-space:nowrap;
+}
+
+#mainMenu a.active
+{
+    font-weight: normal;
+    color: black;
+    text-decoration: none;
+}
+
+#mainMenu li:hover a
+{
+    background-color: yellow;
+    border: 2px solid #000;
+    color: #000000;
+    padding: 0 9px 2px 9px;
+    text-decoration: none;
+}
