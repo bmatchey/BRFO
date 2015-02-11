@@ -1,0 +1,89 @@
+@CHARSET "UTF-8";
+
+#brandsContainer {
+	background-color: #393939;
+	clear: both;
+	color: #fff;
+	font-size: 14px;
+	margin: 0 auto;
+	overflow: hidden;
+	width: 100%;
+    text-align: center;
+}
+
+#ourBrands
+{
+    width: 80%;
+    margin: 0 auto;
+}
+
+#ourBrands li
+{
+    display: inline;
+    list-style-type: none;
+    padding-right: 10px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#ourBrands img
+{
+	padding-top: 10px;
+}
+
+
+
+/* .sub-footer-left { */
+/* 	float: left; */
+/* 	width: 98%; */
+/* } */
+
+/* #footer-widgets { */
+/* 	background: url(../assets/footerbackground.png); */
+/* 	clear: both; */
+/* 	color: #ccc; */
+/* 	font-size: 14px; */
+/* 	margin: 0 auto; */
+/* 	overflow: hidden; */
+/* 	width: 100%; */
+/* } */
+
+/* footer-widgets .widget { */
+/* 	background: none; */
+/* 	border: none; */
+/* 	margin: 0 0 15px; */
+/* 	padding: 0; */
+/* } */
+
+/* .footer-widgets-1 { */
+/* 	float: left; */
+/* 	margin: 0 40px 0 0; */
+/* 	width: 235px; */
+/* } */
+
+/* .footer-widgets-2 { */
+/* 	float: left; */
+/* 	margin: 0 40px 0 0; */
+/* 	width: 235px; */
+/* } */
+
+/* .footer-widgets-3 { */
+/* 	float: left; */
+/* 	width: 235px; */
+/* } */
+
+/* .footer-widgets-4 { */
+/* 	float: right; */
+/* 	width: 235px; */
+/* } */
+
+/* #footer { */
+/* 	background: url(../assets/footerbackground.png); */
+/* 	clear: both; */
+/* 	color: #666; */
+/* 	font-size: 14px; */
+/* 	margin: 0 auto; */
+/* 	overflow: hidden; */
+/* 	width: 100%; */
+/* } */
