@@ -21,6 +21,7 @@
          * Feature areas
          */
         'app.header',
+        'app.footer',
         'app.brands',
         'app.picslider'
     ]);

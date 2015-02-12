@@ -74,7 +74,7 @@ function HeaderDirective($parse, logger)
 		restrict: 'AE',
 		replace: true,
 		transclude: true,
-        templateUrl: "app/templates/header.html",
+        templateUrl: "app/components/header/header.tpl.html",
         controller: HeaderCtrl,
         controllerAs: 'headerCtrl',
         link: linkFunc

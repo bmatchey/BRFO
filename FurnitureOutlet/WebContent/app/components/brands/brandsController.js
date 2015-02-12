@@ -41,7 +41,7 @@ function BrandsDirective($parse, logger)
 		restrict: 'AE',
 		replace: true,
 		transclude: false,
-        templateUrl: "app/templates/brands.html",
+        templateUrl: "app/components/brands/brands.tpl.html",
         controller: BrandsCtrl,
         controllerAs: 'brandsCtrl'
 	};

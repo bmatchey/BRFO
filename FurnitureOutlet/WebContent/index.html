@@ -24,24 +24,17 @@
     <script src="app/blocks/logger/logger.js"></script>
     
     <script src="app/core/core.module.js" type="text/javascript"></script>
-    <script src="app/components/headerController.js" type="text/javascript"></script>
-    <script src="app/components/brandsController.js" type="text/javascript"></script>
-    <script src="app/components/picSliderController.js" type="text/javascript"></script>
+    <script src="app/components/header/headerController.js" type="text/javascript"></script>
+    <script src="app/components/footer/footerController.js" type="text/javascript"></script>
+    <script src="app/components/brands/brandsController.js" type="text/javascript"></script>
+    <script src="app/components/pictures/picSliderController.js" type="text/javascript"></script>
 	
 </head>
 
 <body>
     <header activeItem="Home"></header> 
-
-    <div id="picSliderContainer">
-        <a href="index.html?storefront" title="Black River Furniture Outlet">
-            <div ng-controller="SliderCtrl as picsList">
-              <div id="animatedPic" ng-repeat="pic in picsList.brfoImages track by $index">
-                <img ng-src="assets/{{pic.src}}" class="responsive-shrinkWidth bordered repeat-slider" ng-show="picsList.sliderIndex == $index" />              
-              </div>
-            </div>
-        </a>
-    </div>
+    
+    <fade-in-slider ></fade-in-slider>
 
     <div id="homeContent" class="content">
         <div id="homeSection" class="contentSection shadowed">
@@ -105,7 +98,9 @@
         </div>
     </div>
 
-    <brands />
+    <brands ></brands>
+
+    <footer ></footer>  
 
 </body>
 </html>

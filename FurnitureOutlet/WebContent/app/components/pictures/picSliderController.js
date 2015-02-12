@@ -1,5 +1,6 @@
 angular.module('app.picslider', ['ngAnimate'])
-	.controller('SliderCtrl', SliderCtrl);
+	.controller('SliderCtrl', SliderCtrl)
+	.directive('fadeInSlider', FadeInSliderDirective);
 
 function SliderCtrl(logger, $timeout, $animate)
 {
@@ -7,6 +8,7 @@ function SliderCtrl(logger, $timeout, $animate)
 	vm.sliderNext = sliderNext;
 	vm.sliderIndex = 0;
 	vm.interval = 2000;
+	
 
 	vm.brfoImages = [
 	{
@@ -48,7 +50,7 @@ function SliderCtrl(logger, $timeout, $animate)
 	function sliderNext()
 	{
 		vm.sliderIndex = (vm.sliderIndex == vm.brfoImages.length - 1) ? 0 : vm.sliderIndex + 1;
-//		logger.info('Pic shown - ' + JSON.stringify(vm.brfoImages[vm.sliderIndex]));
+		//logger.info('Pic shown - ' + JSON.stringify(vm.brfoImages[vm.sliderIndex]));
 	}
 
 	var timer;
@@ -63,4 +65,20 @@ function SliderCtrl(logger, $timeout, $animate)
 
 	// Turn on the slider.
 	sliderFunc();
+}
+
+function FadeInSliderDirective()
+{
+	var directive = 
+	{
+		restrict: 'AE',
+		replace: true,
+		transclude: true,
+        templateUrl: "app/components/pictures/fadeInSlideShow.tpl.html",
+        controller: SliderCtrl,
+        controllerAs: 'sliderCtrl'
+	};
+	
+	return directive;
+	
 }
