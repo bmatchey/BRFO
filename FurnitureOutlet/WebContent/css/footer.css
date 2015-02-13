@@ -53,18 +53,9 @@
 
 .footerPadRight
 {
+    padding-top: 20px;
 	padding-right: 20px;
 }
-
-/* .googleMap */
-/* { */
-/* 	cursor: url(https://maps.gstatic.com/mapfiles/openhand_8_8.cur) 8 8, default; */
-/* } */
-
-/* .gm-style * { */
-/*   width:auto; */
-/*   height:auto; */
-/* } */
 
 #footerBottom {
 	background: url(../assets/footer-line.png) repeat-x;

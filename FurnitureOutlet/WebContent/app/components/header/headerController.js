@@ -18,7 +18,7 @@ function HeaderCtrl($parse)
 	             	},
 	                {
 	                	caption: 'Sleep Center',
-	             		target : 'index.html?Sleep Center',
+	             		target : 'sleepCenter.html',
 	             		index: 1
 	             	},
 	                {

@@ -1,14 +1,18 @@
 @CHARSET "UTF-8";
 
-#picSliderContainer
+.largePicSlider
 {
     background-image: url(../assets/picSliderBackground.png);  /* use a small image background if neither of the gradients are supported. */
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2664CD), to(#3D83E2));
     background-image: -moz-linear-gradient(19% 75% 90deg,#3D83E2, #2664CD);
-	max-height: 400px;
-	width: 100%;
+    max-height: 400px;
+    width: 100%;
     height: auto; 
     margin: 0 auto;
+}
+
+.picSliderContainer
+{
     text-align: center; 
     padding-top: 10px;
     padding-bottom: 10px;
@@ -21,15 +25,10 @@
 /* Animations.  Typically, a cross fade would have opacity:0 and opacity:1, but that deosn't work unless you use absolute positioning. */
 .repeat-slider
 {
-/*   -webkit-transition: opacity 1s ease-in-out; */
-/*   -moz-transition: opacity 1s ease-in-out; */
-/*   -o-transition: opacity 1s ease-in-out; */
-/*   transition: opacity 1s ease-in-out; */
-
-  -webkit-transition: opacity 0.25s ease-in;
-  -moz-transition: opacity 0.25s ease-in;
-  -o-transition: opacity 0.25s ease-in;
-  transition: opacity 0.25s ease-in;
+  -webkit-transition: opacity 0.25s ease-in-out;
+  -moz-transition: opacity 0.25s ease-in-out;
+  -o-transition: opacity 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
 
     /* max-height = picSliderContainer max-height - picSliderContainer.padding - bordered.border */  
   max-height: 350px;
@@ -56,7 +55,7 @@ div.imgContainer
 	margin: 0 auto;
 }
 
-.shadowed,.bordered
+.shadowed
 {
     -webkit-box-shadow: 0px 4px 30px 0px #555555;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
     -moz-box-shadow:    0px 4px 30px 0px #555555;  /* Firefox 3.5 - 3.6 */
@@ -68,6 +67,12 @@ div.imgContainer
 	border: 15px solid;
 	border-color: white;
 	border-radius: 5px;
+}
+
+.rounded
+{
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
 }
 
 img.responsive-fill 
@@ -92,10 +97,6 @@ img.responsive-shrinkHeight
 {
 	background-color: rgb(233, 240, 82);
 	overflow: hidden;
-	padding-left: 40px;
-	padding-right: 40px;
-	padding-top: 40px;
-    padding-bottom: 40px;
 	background: #fceabb;
 	background: -moz-linear-gradient(top, #fceabb 0%, #f8e000 28%, #f8e000 55%, #f7e75b 74%, #fbdf93 100%);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fceabb), color-stop(28%,#f8e000), color-stop(55%,#f8e000), color-stop(74%,#f7e75b), color-stop(100%,#fbdf93));
@@ -104,21 +105,19 @@ img.responsive-shrinkHeight
 	background: -ms-linear-gradient(top, #fceabb 0%,#f8e000 28%,#f8e000 55%,#f7e75b 74%,#fbdf93 100%);
 	background: linear-gradient(to bottom, #fceabb 0%,#f8e000 28%,#f8e000 55%,#f7e75b 74%,#fbdf93 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93',GradientType=0 );
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 40px;
 }
-
 
 .contentSection
 {
-    width:96%;
+	width:96%;
 	float: left;
 	margin: 0 40px 0 0px;
 	text-align: justify;
 	background-color: white;
 	padding: 20px;
-	-webkit-border-radius: 10px;
-	border-radius: 10px;
-    -moz-box-shadow: 0px 8px 30px rgba(50, 50, 50, 0.96);
-    -webkit-box-shadow: 0px 8px 30px rgba(50, 50, 50, 0.96);
-    box-shadow: 0px 8px 30px rgba(50,50,50,0.96);   
+	margin-bottom: 20px;
 }
 

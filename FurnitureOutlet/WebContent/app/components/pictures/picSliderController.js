@@ -7,49 +7,15 @@ function SliderCtrl(logger, $timeout, $animate)
 	var vm = this;
 	vm.sliderNext = sliderNext;
 	vm.sliderIndex = 0;
-	vm.interval = 2000;
-	
+	vm.interval = 5000;
+	vm.sliderImages = [];
+	vm.srcFolder = 'assets';
+	vm.target = "#";
 
-	vm.brfoImages = [
-	{
-		src : 'Black-River-Furniture-Outlet-Store-Front-3.png',
-		title : 'Black River Furniture Outlet',
-		index: 0
-	},
-	{
-		src : 'Sleep-Center-Home-1.png',
-		title : 'Sleep Center',
-		index: 1
-	},
-	{
-		src : 'Dressers-to-the-Sealing-1.png',
-		title : 'Bedroom',
-		index: 2
-	},
-	{
-		src : 'BRF-Upholstery-Gallery-1.png',
-		title : 'Upholstery Gallery',
-		index: 3
-	},
-	{
-		src : 'Black-River-Furniture-Tables.png',
-		title : 'Dining',
-		index: 4
-	},
-	{
-		src : 'Black-River-Cabin-Furniture-Outside-1.png',
-		title : 'Cabin',
-		index: 5
-	},
-	{
-		src : 'Black-River-Falls-Wisconsin-Rugs-1.png',
-		title : 'Rugs',
-		index: 6
-	} ];
 
 	function sliderNext()
 	{
-		vm.sliderIndex = (vm.sliderIndex == vm.brfoImages.length - 1) ? 0 : vm.sliderIndex + 1;
+		vm.sliderIndex = (vm.sliderIndex == vm.sliderImages.length - 1) ? 0 : vm.sliderIndex + 1;
 		//logger.info('Pic shown - ' + JSON.stringify(vm.brfoImages[vm.sliderIndex]));
 	}
 
@@ -67,18 +33,33 @@ function SliderCtrl(logger, $timeout, $animate)
 	sliderFunc();
 }
 
-function FadeInSliderDirective()
+function FadeInSliderDirective($parse, logger)
 {
 	var directive = 
 	{
-		restrict: 'AE',
+		restrict: 'E',
 		replace: true,
 		transclude: true,
+		scope: {},  // Add this line to create an isolated scope
         templateUrl: "app/components/pictures/fadeInSlideShow.tpl.html",
         controller: SliderCtrl,
-        controllerAs: 'sliderCtrl'
+        controllerAs: 'sliderCtrl',
+        link: linkFunc
 	};
 	
 	return directive;
+	
+	
+	function linkFunc(scope, element, attrs, sliderCtrl)
+	{
+		sliderCtrl.sliderImages = scope.$eval(attrs.images);
+		if (element.attr('srcFolder') != null)
+			sliderCtrl.srcFolder = element.attr('srcFolder');
+		sliderCtrl.interval = element.attr('interval');
+		if (sliderCtrl.interval == null)
+			sliderCtrl.interval = 2000;
+		if (element.attr('target') != null)
+			sliderCtrl.target = element.attr('target');
+	}
 	
 }
