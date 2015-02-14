@@ -2,55 +2,25 @@ angular.module('app.header', [])
 	.controller('HeaderCtrl', HeaderCtrl)
 	.directive('header', HeaderDirective);
 
-function HeaderCtrl($parse)
+function HeaderCtrl($rootScope, $parse, $location)
 {
 	var vm = this;
 	vm.title = "Black River Furniture Outlet";
 	vm.titleClickTarget = "index.html";
 	vm.activeIndex = 0;
 	vm.indexOfCaption = indexOfCaption;
+	vm.menuItemClicked = menuItemClicked;
 	
+//	menu items.  if target is specified, the menu will route to there.  Otherwise, it only sets rootScope.activeMenuItem.  
 	vm.menuItems = [
-	                {
-	                	caption: 'Home',
-	             		target : 'index.html',	             		
-	             		index: 0
-	             	},
-	                {
-	                	caption: 'Sleep Center',
-	             		target : 'sleepCenter.html',
-	             		index: 1
-	             	},
-	                {
-	                	caption: 'Bedroom',
-	             		target : 'index.html?Bedroom',
-	             		index: 2
-	             	},
-	                {
-	                	caption: 'Upholstery Gallery',
-	             		target : 'index.html?Upholstery Gallery',
-	             		index: 3
-	             	},
-	                {
-	                	caption: 'Dining',
-	             		target : 'index.html?Dining',
-	             		index: 4
-	             	},
-	                {
-	                	caption: 'Cabin',
-	             		target : 'index.html?Cabin',
-	             		index: 5
-	             	},
-	                {
-	                	caption: 'Rugs',
-	             		target : 'index.html?Rugs',
-	             		index: 6
-	             	},
-	                {
-	                	caption: 'Surplus Outlet',
-	             		target : 'http://www.blackriversurplus.com/',
-	             		index: 7
-	             	}
+	                {caption: 'Home'},
+	                {caption: 'Sleep Center'},
+	                {caption: 'Bedroom'},
+	                {caption: 'Upholstery Gallery'},
+	                {caption: 'Dining'},
+	                {caption: 'Cabin'},
+	                {caption: 'Rugs'},
+	                {caption: 'Surplus Outlet', target : 'http://www.blackriversurplus.com/'}
 	             	];
 	             	
 	function indexOfCaption(caption)
@@ -65,9 +35,22 @@ function HeaderCtrl($parse)
 		
 		return -1;
 	}
+	
+	function menuItemClicked(item)
+	{
+		if (item.target != null)
+		{
+			window.location = item.target;
+		}
+		else
+		{
+			vm.activeIndex = indexOfCaption(item.caption);
+			$rootScope.activeMenuItem = item.caption;
+		}
+	}
 }
 
-function HeaderDirective($parse, logger)
+function HeaderDirective($rootScope, $parse, logger)
 {
 	var directive = 
 	{
@@ -85,6 +68,7 @@ function HeaderDirective($parse, logger)
 	function linkFunc(scope, element, attrs, headerCtrl)
 	{
 		headerCtrl.activeIndex = headerCtrl.indexOfCaption(element.attr('activeItem'));
+		$rootScope.activeMenuItem = element.attr('activeItem');
 	}
 	
 }

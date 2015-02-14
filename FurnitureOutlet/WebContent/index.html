@@ -32,7 +32,7 @@
 </head>
 
 <body>
-    <header activeItem="Home"></header> 
+    <header activeItem="Home"> </header> 
     
     <div class="largePicSlider">
         <fade-in-slider interval="5000" images="[
@@ -44,70 +44,150 @@
         {src : 'homePage/Black-River-Cabin-Furniture-Outside-1.png', title: 'Cabin'},
         {src : 'homePage/Black-River-Falls-Wisconsin-Rugs-1.png', title: 'Rugs'} ]"></fade-in-slider>
     </div>
+	<div id="variableContent" class="content">
+		<div id="contentSection" class="contentSection shadowed rounded">
+			<div ng-switch on="activeMenuItem">
+				
+				<div ng-switch-default class="content-slider-fadeInOut">
+					<h1>
+						<strong>Mission Statement:</strong>
+					</h1>
+					<h1 style="text-align: center;">
+						<span style="color: #ff0000;">To be Wisconsin's best priced variety
+							furniture store!</span>
+					</h1>
+					<p style="text-align: right;">
+						<strong>SMALL BUSINESS SURVIVES!</strong>
+					</p>
+					<div style="height: 8px;"></div>
+					<br> <strong>Open 7 days a week,</strong> family owned Black River
+					Furniture Outlet has been offering furniture in some way for the last 20
+					years. We started out with a small section of furniture in our Black River
+					Surplus store and have grown to our new location of over 20,000 square feet
+					of upholstery, mattresses, dining, entertainment, bedroom, cabin,
+					occasional and home office furniture. And we have great deals on rugs too!
+					<br>
+					<div style="height: 8px;"></div>
+					<strong>When it comes to upholstery,</strong> we try to have 50 – 100
+					recliners on hand at all times. We have racks of sofas and sectionals set
+					up for our customers. Our sleep center offers 25 different styles of
+					mattresses. In our dining section we stock drop leaf tables to major dining
+					sets both regular and counter height. We always have bedroom sets and
+					individual bedroom pieces available. We usually have a reasonable variety
+					of closeouts and stock items when it comes to entertainment, home office
+					and coffee table sets. The majority of rugs we stock are from Dalton
+					Georgia and they are always priced right. <br>
+					<div style="height: 8px;"></div>
+					<strong>Our cabin furniture</strong> area offers aspen, hickory, pine and
+					northern cedar products along with a custom ordering upholstery program.
+					It's working out great for our customers because they can get what they
+					want at reasonable prices. Nice cabin furniture is expensive, but it
+					doesn't have to be as expensive as what our customers have told us about
+					and what we've seen. Currently we are committing to a modest interstate
+					sign that will read “Cabin Furniture Outlet” on I94. If you've seen this
+					sign and you need cabin furniture please stop by. <br>
+					<div style="height: 8px;"></div>
+					<strong>We are not a high pressure</strong> furniture store. We are a
+					customer oriented store that recognizes that you might want to purchase
+					today or 6 months from today or whenever. Our goal is to give you
+					information, product selection, good pricing and to build a business
+					relationship. Our products change weekly as we are a volume business
+					continuing to build variety and opportunity for our customers. <br>
+					<div style="height: 8px;"></div>
+					<strong>Welcome &amp; be invited </strong>if you live in Black River Falls
+					or the surrounding area, or if you are passing through, to shop Black River
+					Furniture Outlet! Open 7 days a week. Hwy 54 “On The East Side!”
+				</div>
+				
+				<div ng-switch-when="Sleep Center" class="content-slider-fadeInOut">
 
-    <div id="homeContent" class="content">
-        <div id="homeSection" class="contentSection shadowed rounded">
-            <h1>
-                <strong>Mission Statement:</strong>
-            </h1>
-            <h1 style="text-align: center;">
-                <span style="color: #ff0000;">To be Wisconsin's best priced
-                    variety furniture store!</span>
-            </h1>
-            <p style="text-align: right;">
-                <strong>SMALL BUSINESS SURVIVES!</strong>
-            </p>
-            <div style="height: 8px;"></div>
-            <br> 
-            <strong>Open 7 days a week,</strong> family owned Black
-            River Furniture Outlet has been offering furniture in some way for
-            the last 20 years. We started out with a small section of furniture
-            in our Black River Surplus store and have grown to our new location
-            of over 20,000 square feet of upholstery, mattresses, dining,
-            entertainment, bedroom, cabin, occasional and home office furniture.
-            And we have great deals on rugs too! <br>
-            <div style="height: 8px;"></div>
-            
-            <strong>When it comes to upholstery,</strong> we try to have
-            50 – 100 recliners on hand at all times. We have racks of sofas and
-            sectionals set up for our customers. Our sleep center offers 25
-            different styles of mattresses. In our dining section we stock drop
-            leaf tables to major dining sets both regular and counter height. We
-            always have bedroom sets and individual bedroom pieces available. We
-            usually have a reasonable variety of closeouts and stock items when
-            it comes to entertainment, home office and coffee table sets. The
-            majority of rugs we stock are from Dalton Georgia and they are always
-            priced right. <br>
-            <div style="height: 8px;"></div>
-            
-            <strong>Our cabin furniture</strong> area offers aspen,
-            hickory, pine and northern cedar products along with a custom
-            ordering upholstery program. It's working out great for our customers
-            because they can get what they want at reasonable prices. Nice cabin
-            furniture is expensive, but it doesn't have to be as expensive as
-            what our customers have told us about and what we've seen. Currently
-            we are committing to a modest interstate sign that will read “Cabin
-            Furniture Outlet” on I94. If you've seen this sign and you need cabin
-            furniture please stop by. <br>
-            <div style="height: 8px;"></div>
-            
-            <strong>We are not a high pressure</strong> furniture store.
-            We are a customer oriented store that recognizes that you might want
-            to purchase today or 6 months from today or whenever. Our goal is to
-            give you information, product selection, good pricing and to build a
-            business relationship. Our products change weekly as we are a volume
-            business continuing to build variety and opportunity for our
-            customers. <br>
-            <div style="height: 8px;"></div>
-            
-            <strong>Welcome &amp; be invited </strong>if you live in Black
-            River Falls or the surrounding area, or if you are passing through,
-            to shop Black River Furniture Outlet! Open 7 days a week. Hwy 54 “On
-            The East Side!”
-        </div>
-    </div>
+					<span style="color: #ff0000;"><strong>Black River Furniture
+							Outlet is a “Sleep Center!”</strong></span>
+					</p>
+					<p>We show over 25 different styles and feels of mattresses everyday!
+						We offer a natural contouring spring system with our latex beds. We sell
+						the temperature neutral gel beds as well as the traditional visco memory
+						foam mattresses. We have the new gel hybrids that combine the cooling
+						effects of gel with the feel of springs. We sell pocketed coil mattresses
+						that give people the motion separation and the dense feel of foam and
+						latex at a great price. Plus we sell the traditional and durable 2-sided
+						coil system that&#8217;s been around forever! We even carry a mattress
+						that&#8217;s guaranteed to 850lbs!</p>
+					<p>At Black River Furniture Outlet we have mattresses for ages 2-12,
+						ages 12-18, adult starters, spare bedrooms, cabins and master bedrooms. We
+						carry a large inventory and can also order in a timely fashion (1-2
+						weeks).</p>
+					<p>We also sell ergonomically correct beds or lift beds from the
+						promotional style to the deluxe as well as a regular metal frame if
+						you&#8217;re just looking for something simple.</p>
+					<p>There&#8217;s no reason to suffer another night on your old
+						mattress! Come on in to Black River Furniture Outlet so you can get some
+						sleep and quit counting sheep!</p>
+				</div>
+				
+				<div ng-switch-when="Bedroom" class="content-slider-fadeInOut">
+					<br /> Info to come&#8230;
+					</p>
+				</div>
+				
+				<div ng-switch-when="Upholstery Gallery" class="content-slider-fadeInOut">
+					<p>We are an “upholstery gallery” at Black River Furniture Outlet! We
+						offer discount to custom ordering at fair to below market prices using 6
+						different upholstery lines that include Ashley, Best Home Furnishings,
+						Catnapper, Albany, Best Craft and Jackson Manufacturing.</p>
+					<p>We always have 50-100 recliners and motion furniture pieces on the
+						floor. For customers of smaller stature we have recliners where your feet
+						can actually touch the floor and for our large and tall customers we have
+						recliners that open to 7 feet and are warrantied to 450 lbs.</p>
+					<p>Sectionals and sofas come both as stationary or double reclining.
+						The perfect “L” non-reclining sectional is very popular because it wastes
+						no space in the corner of the room. Customers with big living rooms often
+						prefer the large half moon reclining styles. Folks that like to change
+						their arrangement often buy a motion sofa, love and recliner. There’s so
+						much to think about! Anyway, we would be more than happy to help you with
+						measurements, pictures and quotes if you are replacing your furniture or
+						simply redecorating your room.</p>
+					<p>So come on in to Black River Furniture Outlet and let us help you
+						find your next living room furniture set!</p>
+					<p>&nbsp;</p>
+				</div>
+			
+				<div ng-switch-when="Dining" class="content-slider-fadeInOut">
+					<p>At Black River Furniture Outlet we always have dining sets, tables,
+						individual chairs and bar stools available to buy or order. We sell
+						regular height dining as well as counter height dining from discount to
+						moderately priced finer sets. Our inventory changes regularly so we get
+						different styles from week to week. Whether it’s for the kitchen or the
+						regular dining room stop or call us at Black River Furniture Outlet.</p>
+				</div>
+			
+				<div ng-switch-when="Cabin" class="content-slider-fadeInOut">
+					<p>At Black River Furniture we dedicate a whole section to log cabin
+						furniture as well as “up North” and wildlife design upholstery products.</p>
+					<p>We stock aspen, northern cedar, white cedar, pine and hickory
+						bedroom and dining furniture. And we are adding to our collection
+						everyday! Our stained and unstained aspen sells like crazy and the quality
+						workmanship of our builders is excellent! Check out the pictures!</p>
+					<p>In our upholstery line we carry Real Tree camo patterns along with
+						bear, deer and all kinds of different wildlife and outdoor designs. Our
+						upholstery products are custom made in America!</p>
+					<p>If you need cabin furniture at reasonable prices, you need Black
+						River Furniture Outlet!</p>
+				</div>
+			
+				<div ng-switch-when="Rugs" class="content-slider-fadeInOut">
+					<p>We’ve been selling rugs at Black River Furniture Outlet from the
+						beginning! We stock 5x8s and 8x10s all of the time. We get the majority of
+						our rugs from Dalton Georgia which are regular running line goods and
+						discontinued designer line products. We have very nice rugs for reasonable
+						prices! Check out some of the gallery pics and when you need a rug shop
+						Black River Furniture Outlet!</p>
+				</div>
+			</div>
+		</div>
+	</div>
 
-    <brands ></brands>
+	<brands ></brands>
 
     <footer ></footer>  
 

@@ -8,7 +8,7 @@
     <div id="mainMenu">
         <ul>
             <li ng-repeat="item in headerCtrl.menuItems track by $index">
-                <a href="{{item.target}}" ng-class="{'active': $index == headerCtrl.activeIndex}">{{item.caption}}</a>
+                <a ng-click="headerCtrl.menuItemClicked(item)" ng-class="{'active': $index == headerCtrl.activeIndex}">{{item.caption}}</a>
             </li>
         </ul>
     </div>

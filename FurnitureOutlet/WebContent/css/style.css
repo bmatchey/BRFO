@@ -32,6 +32,11 @@
 
     /* max-height = picSliderContainer max-height - picSliderContainer.padding - bordered.border */  
   max-height: 350px;
+  
+  /* http://www.palantir.net/blog/responsive-design-s-dirty-little-secret */
+/*   margin-left: 0; */
+/*   margin-right: -100%; */
+/*   float: left; */
 }
 
 .repeat-slider.ng-hide-remove
@@ -43,7 +48,20 @@
 {
 /*     z-index = 0; */
 /*     opacity: 1; */
-    display: none;
+     display: none; 
+}
+
+
+.content-slider-fadeInOut.ng-enter {
+  opacity: 0;
+  -webkit-transition:all linear 1s;
+  -moz-transition:all linear 1s;
+  -o-transition:all linear 1s;
+  transition: opacity 1s;
+}
+
+.content-slider-fadeInOut.ng-enter.ng-enter-active {
+  opacity: 1.0;
 }
 
 
