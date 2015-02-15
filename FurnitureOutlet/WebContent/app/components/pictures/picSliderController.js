@@ -1,8 +1,10 @@
 angular.module('app.picslider', ['ngAnimate'])
 	.controller('SliderCtrl', SliderCtrl)
-	.directive('fadeInSlider', FadeInSliderDirective);
+	.directive('fadeInSlider', FadeInSliderDirective)
+	.factory('changePicsService', ChangePicsService);
 
-function SliderCtrl(logger, $timeout, $animate)
+
+function SliderCtrl(logger, $timeout, $animate, $scope)
 {
 	var vm = this;
 	vm.sliderNext = sliderNext;
@@ -31,6 +33,12 @@ function SliderCtrl(logger, $timeout, $animate)
 
 	// Turn on the slider.
 	sliderFunc();
+	
+	$scope.$on('handlePicsChanged', handlePicsChanged);
+	function handlePicsChanged()
+	{
+		$scope.sliderImages = changePicsService.images;
+	}
 }
 
 function FadeInSliderDirective($parse, logger)
@@ -61,5 +69,21 @@ function FadeInSliderDirective($parse, logger)
 		if (element.attr('target') != null)
 			sliderCtrl.target = element.attr('target');
 	}
+}
+
+function ChangePicsService($rootScope)
+{
+	var service = {};
+	service.images = [];
+	service.changePics = ChangePics;
+	
+	return service;
+	
+	function ChangePics(images)
+	{
+		this.images = images;
+		$rootScope.$broadcast('handlePicsChanged');
+	}
 	
 }
+

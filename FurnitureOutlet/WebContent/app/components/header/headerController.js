@@ -12,16 +12,7 @@ function HeaderCtrl($rootScope, $parse, $location)
 	vm.menuItemClicked = menuItemClicked;
 	
 //	menu items.  if target is specified, the menu will route to there.  Otherwise, it only sets rootScope.activeMenuItem.  
-	vm.menuItems = [
-	                {caption: 'Home'},
-	                {caption: 'Sleep Center'},
-	                {caption: 'Bedroom'},
-	                {caption: 'Upholstery Gallery'},
-	                {caption: 'Dining'},
-	                {caption: 'Cabin'},
-	                {caption: 'Rugs'},
-	                {caption: 'Surplus Outlet', target : 'http://www.blackriversurplus.com/'}
-	             	];
+	vm.menuItems = [];
 	             	
 	function indexOfCaption(caption)
 	{
@@ -69,6 +60,10 @@ function HeaderDirective($rootScope, $parse, logger)
 	{
 		headerCtrl.activeIndex = headerCtrl.indexOfCaption(element.attr('activeItem'));
 		$rootScope.activeMenuItem = element.attr('activeItem');
+		if (element.attr('menuItems') != null)
+		{
+			headerCtrl.menuItems = scope.$eval(element.attr('menuItems'));
+		}
 	}
 	
 }

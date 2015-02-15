@@ -28,25 +28,84 @@
     <script src="app/components/footer/footerController.js" type="text/javascript"></script>
     <script src="app/components/brands/brandsController.js" type="text/javascript"></script>
     <script src="app/components/pictures/picSliderController.js" type="text/javascript"></script>
+    <script src="app/components/pages/mainPageController.js" type="text/javascript"></script>
 	
 </head>
 
 <body>
-    <header activeItem="Home"> </header> 
+    <header activeItem="Home" menuItems = "[
+                    {caption: 'Home'},
+                    {caption: 'Sleep Center'},
+                    {caption: 'Bedroom'},
+                    {caption: 'Upholstery Gallery'},
+                    {caption: 'Dining'},
+                    {caption: 'Cabin'},
+                    {caption: 'Rugs'},
+                    {caption: 'Surplus Outlet', target : 'http://www.blackriversurplus.com/'}
+                    ]" > </header> 
     
-    <div class="largePicSlider">
-        <fade-in-slider interval="5000" images="[
-        {src : 'homePage/Black-River-Furniture-Outlet-Store-Front-3.png', title : 'Black River Furniture Outlet'},
-        {src : 'homePage/Sleep-Center-Home-1.png', title: 'Sleep Center', target: 'sleepCenter.html'},
-        {src : 'homePage/Dressers-to-the-Sealing-1.png', title: 'Bedroom'},
-        {src : 'homePage/BRF-Upholstery-Gallery-1.png', title: 'Upholstery Gallery'},
-        {src : 'homePage/Black-River-Furniture-Tables.png', title: 'Dining'},
-        {src : 'homePage/Black-River-Cabin-Furniture-Outside-1.png', title: 'Cabin'},
-        {src : 'homePage/Black-River-Falls-Wisconsin-Rugs-1.png', title: 'Rugs'} ]"></fade-in-slider>
+    <div ng-switch on="activeMenuItem">
+	    <div class="largePicSlider" ng-switch-default>
+	        <fade-in-slider interval="3000" images="[
+	        {src : 'homePage/Black-River-Furniture-Outlet-Store-Front-3.png', title : 'Black River Furniture Outlet'},
+	        {src : 'homePage/Sleep-Center-Home-1.png', title: 'Sleep Center'},
+	        {src : 'homePage/Dressers-to-the-Sealing-1.png', title: 'Bedroom'},
+	        {src : 'homePage/BRF-Upholstery-Gallery-1.png', title: 'Upholstery Gallery'},
+	        {src : 'homePage/Black-River-Furniture-Tables.png', title: 'Dining'},
+	        {src : 'homePage/Black-River-Cabin-Furniture-Outside-1.png', title: 'Cabin'},
+	        {src : 'homePage/Black-River-Falls-Wisconsin-Rugs-1.png', title: 'Rugs'} ]"></fade-in-slider>
+	    </div>
+	            
+        <div class="largePicSlider" ng-switch-when="Sleep Center">
+	        <fade-in-slider interval="3000" images="[
+            {src : 'sleepCenter/Black-River-Falls-Sleep-Center11.png', title: ''},
+            {src : 'sleepCenter/Black-River-Matresses1.png', title: ''},
+            {src : 'sleepCenter/BRF-Sleep-Center-Trailer111.png', title: ''},
+            {src : 'sleepCenter/Black-River-Falls-Matteress-Sale11.png', title: ''},
+            {src : 'sleepCenter/Matress-Choice-at-Black-River-Furniture1.png', title: ''} ]"></fade-in-slider>
+        </div>
+                
+        <div class="largePicSlider" ng-switch-when="Bedroom">
+            <fade-in-slider interval="3000" images="[
+            {src : 'bedroom/Bedroom-Slide-21.png', title : 'Black River Furniture Outlet'},
+            {src : 'bedroom/Bedroom-Slide-11.png', title: ''},
+            {src : 'bedroom/Bedroom-Slide-44.png', title: ''},
+            {src : 'bedroom/Bedroom-Slide-55.png', title: ''} ]"></fade-in-slider>
+        </div>
+                
+        <div class="largePicSlider" ng-switch-when="Upholstery Gallery">
+            <fade-in-slider interval="3000" images="[
+            {src : 'upholstery/Recliners-at-BRF-Funiture.png', title: ''},
+            {src : 'upholstery/Floor-to-Ceiling-recliners.png', title : ''},
+            {src : 'upholstery/Sit-and-Stand-Black-River-Furniture.png', title: ''},
+            {src : 'upholstery/Sit-and-Stand-Demo-Black-River-Furniture.png', title: ''} ]"></fade-in-slider>
+        </div>
+                
+        <div class="largePicSlider" ng-switch-when="Dining">
+            <fade-in-slider interval="3000" images="[
+            {src : 'dining/Black-River-Furniture-Tables.png', title : ''},
+            {src : 'dining/Dinning-room-chairs.png', title: ''},
+            {src : 'dining/Dinning-room-furniture.png', title: ''},
+            {src : 'dining/Dinning-room-sets-at-Black-River-Furniture.png', title: ''} ]"></fade-in-slider>
+        </div>
+                
+        <div class="largePicSlider" ng-switch-when="Cabin">
+            <fade-in-slider interval="3000" images="[
+            {src : 'cabin/Bedroom-Furniture-Outlet-Black-River-Falls-WI.png', title : ''},
+            {src : 'cabin/Cabin-Furniture.png', title: ''},
+            {src : 'cabin/Black-River-Cabin-Furntiture-Outlet-Store.png', title: ''} ]"></fade-in-slider>
+        </div>
+                
+        <div class="largePicSlider" ng-switch-when="Rugs">
+            <fade-in-slider interval="3000" images="[
+            {src : 'rugs/Amazing-Selection-of-Rugs-Black-River-Furniture.png', title : ''} ]"></fade-in-slider>
+        </div>
+	    
     </div>
+        
 	<div id="variableContent" class="content">
 		<div id="contentSection" class="contentSection shadowed rounded">
-			<div ng-switch on="activeMenuItem">
+			<div ng-switch on="activeMenuItem" ng-controller="MainPageCtrl">
 				
 				<div ng-switch-default class="content-slider-fadeInOut">
 					<h1>
