@@ -28,11 +28,12 @@
     <script src="app/components/footer/footerController.js" type="text/javascript"></script>
     <script src="app/components/brands/brandsController.js" type="text/javascript"></script>
     <script src="app/components/pictures/picSliderController.js" type="text/javascript"></script>
-    <script src="app/components/pages/mainPageController.js" type="text/javascript"></script>
 	
 </head>
 
 <body>
+    <div id="topOfPage"></div>
+    
     <header activeItem="Home" menuItems = "[
                     {caption: 'Home'},
                     {caption: 'Sleep Center'},
@@ -105,7 +106,7 @@
         
 	<div id="variableContent" class="content">
 		<div id="contentSection" class="contentSection shadowed rounded">
-			<div ng-switch on="activeMenuItem" ng-controller="MainPageCtrl">
+			<div ng-switch on="activeMenuItem" >
 				
 				<div ng-switch-default class="content-slider-fadeInOut">
 					<h1>
@@ -162,7 +163,7 @@
 
 					<span style="color: #ff0000;"><strong>Black River Furniture
 							Outlet is a “Sleep Center!”</strong></span>
-					</p>
+
 					<p>We show over 25 different styles and feels of mattresses everyday!
 						We offer a natural contouring spring system with our latex beds. We sell
 						the temperature neutral gel beds as well as the traditional visco memory
@@ -186,7 +187,6 @@
 				
 				<div ng-switch-when="Bedroom" class="content-slider-fadeInOut">
 					<br /> Info to come&#8230;
-					</p>
 				</div>
 				
 				<div ng-switch-when="Upholstery Gallery" class="content-slider-fadeInOut">
@@ -248,7 +248,7 @@
 
 	<brands ></brands>
 
-    <footer ></footer>  
+    <footer domain="BRFO" ></footer>  
 
 </body>
 </html>

@@ -1,6 +1,6 @@
 <div class="picSliderContainer">
 	<div id="animatedPic" ng-repeat="pic in sliderCtrl.sliderImages track by $index">
-		<a href="{{pic.target}}" title="Black River Furniture Outlet"> 
+		<a href="{{pic.target}}" > 
 			<img ng-src="{{sliderCtrl.srcFolder}}/{{pic.src}}"
 				class="responsive-shrinkWidth bordered repeat-slider"
 				ng-show="sliderCtrl.sliderIndex == $index" title="{{pic.title}}" />

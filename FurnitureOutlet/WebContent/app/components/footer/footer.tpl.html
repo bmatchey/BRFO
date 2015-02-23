@@ -39,14 +39,19 @@
 			</h4>
 		</div>
 		<div class="footerFloatRight footerPadRight">
-			<iframe
-				src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2855.261906592165!2d-90.811392!3d44.30456600000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880109046ef38b41%3A0x286f73ee3c0042b3!2sBlack+River+Furniture+Outlet!5e0!3m2!1sen!2sus!4v1423715345429"
+		  <div ng-switch on="footerCtrl.domain">
+			<iframe ng-switch-default
+				ng-src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2855.261906592165!2d-90.811392!3d44.30456600000001!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x880109046ef38b41%3A0x286f73ee3c0042b3!2sBlack+River+Furniture+Outlet!5e0!3m2!1sen!2sus!4v1423715345429"
 				width="235" height="200" frameborder="0" style="border: 0"></iframe>
+            <iframe ng-switch-when="BRSO"
+                ng-src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2856.173384186569!2d-90.86804599999999!3d44.285823!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x87fee701dcbef18f%3A0xb1a881b9c10a15a3!2sBlack+River+Surplus+Outlet!5e0!3m2!1sen!2sus!4v1424641101697"
+                width="235" height="200" frameborder="0" style="border: 0"></iframe>
+		  </div>
 		</div>
 	</div>
 	<div id="footerBottom">
 		<div class="footerFloatLeft gototop">
-			<a href="#wrap" rel="nofollow">Top</a>
+			<a href="##topOfPage" rel="nofollow">Top</a>
 		</div>
 		<div class="creds">
 			<p>© 2015 · Black River Furniture Outlet</p>

@@ -23,8 +23,7 @@
         'app.header',
         'app.footer',
         'app.brands',
-        'app.picslider',
-        'app.mainPage'
+        'app.picslider'
     ]);
 
 })();
