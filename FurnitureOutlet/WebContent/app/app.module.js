@@ -23,7 +23,8 @@
         'app.header',
         'app.footer',
         'app.brands',
-        'app.picslider'
+        'app.picslider',
+        'app.youtube'
     ]);
 
 })();
