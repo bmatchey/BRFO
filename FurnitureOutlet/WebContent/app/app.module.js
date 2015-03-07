@@ -24,7 +24,9 @@
         'app.footer',
         'app.brands',
         'app.picslider',
-        'app.youtube'
+        'app.picModal',
+        'app.youtube',
+        'app.googleDocs'
     ]);
 
 })();
