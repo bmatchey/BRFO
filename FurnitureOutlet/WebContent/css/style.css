@@ -93,12 +93,6 @@ div.imgContainer
     border-radius: 10px;
 }
 
-.centered
-{
-    width : 100%;
-	text-align: center;
-}
-
 img.responsive-fill 
 {
     width : 100%;
@@ -184,4 +178,39 @@ img.responsive-shrinkHeight
 .saleitem_price
 {
 	font-size: 14px;
+}
+
+.centered
+{
+    width : 100%;
+    text-align: center;
+}
+
+.rightaligned
+{
+    width : 100%;
+    text-align: right;
+}
+
+.bolded
+{
+    font-weight: bold;
+}
+
+.largered
+{
+	color: #ff0000;
+	font-size: 30px;
+}
+
+.largeblack
+{
+    color: #000000;
+    font-size: 30px;
+}
+
+.mediumred
+{
+    color: #ff0000;
+    font-size: 14px;
 }

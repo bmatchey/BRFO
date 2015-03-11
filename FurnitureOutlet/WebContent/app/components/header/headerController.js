@@ -64,6 +64,16 @@ function HeaderDirective($rootScope, $parse, logger)
 		{
 			headerCtrl.menuItems = scope.$eval(element.attr('menuItems'));
 		}
+		if (element.attr('pages') != null)
+		{
+			headerCtrl.menuItems = [];
+			var pages = scope.$eval(element.attr('pages'));
+			for(var i = 0; i < pages.length; i++)
+			{
+				logger.info('Page = ' + pages[i].Page);
+				headerCtrl.menuItems.push({caption: pages[i].Page});
+			}
+		}
 	}
 	
 }

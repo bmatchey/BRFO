@@ -17,8 +17,10 @@ function SliderCtrl(logger, $timeout, $animate, $scope)
 
 	function sliderNext()
 	{
-		vm.sliderIndex = (vm.sliderIndex == vm.sliderImages.length - 1) ? 0 : vm.sliderIndex + 1;
-		//logger.info('Pic shown - ' + JSON.stringify(vm.brfoImages[vm.sliderIndex]));
+		if (vm.sliderImages != null && vm.sliderImages.length > 0)
+		{
+			vm.sliderIndex = (vm.sliderIndex == vm.sliderImages.length - 1) ? 0 : vm.sliderIndex + 1;
+		}
 	}
 
 	var timer;
