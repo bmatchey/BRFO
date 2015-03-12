@@ -2,7 +2,7 @@ angular.module('app.header', [])
 	.controller('HeaderCtrl', HeaderCtrl)
 	.directive('header', HeaderDirective);
 
-function HeaderCtrl($rootScope, $parse, $location)
+function HeaderCtrl($rootScope, $scope)
 {
 	var vm = this;
 	vm.title = "Black River Furniture Outlet";
@@ -10,9 +10,11 @@ function HeaderCtrl($rootScope, $parse, $location)
 	vm.activeIndex = 0;
 	vm.indexOfCaption = indexOfCaption;
 	vm.menuItemClicked = menuItemClicked;
+	vm.addStaticMenuItems = addStaticMenuItems;
 	
 //	menu items.  if target is specified, the menu will route to there.  Otherwise, it only sets rootScope.activeMenuItem.  
 	vm.menuItems = [];
+	vm.staticMenuItems = [];
 	             	
 	function indexOfCaption(caption)
 	{
@@ -39,6 +41,32 @@ function HeaderCtrl($rootScope, $parse, $location)
 			$rootScope.activeMenuItem = item.caption;
 		}
 	}
+	
+	$scope.$on('menuPagesChanged', handlePagesChanged);
+	function handlePagesChanged(event, args)
+	{
+		vm.menuItems = [];
+		for (var i = 0; i < args.length; i++)
+		{
+			if (args[i].Active == 'Yes')
+			{
+				vm.menuItems.push({caption: args[i].Page});
+			}
+		}
+		addStaticMenuItems();
+	}
+	
+	function addStaticMenuItems()
+	{
+		for (var i = 0; i < vm.staticMenuItems.length; i++)
+		{
+			if (indexOfCaption(vm.staticMenuItems[i].caption) == -1)
+			{
+				vm.menuItems.push(vm.staticMenuItems[i]);
+			}
+		}
+	}
+	
 }
 
 function HeaderDirective($rootScope, $parse, logger)
@@ -64,15 +92,10 @@ function HeaderDirective($rootScope, $parse, logger)
 		{
 			headerCtrl.menuItems = scope.$eval(element.attr('menuItems'));
 		}
-		if (element.attr('pages') != null)
+		if (element.attr('staticMenuItems') != null)
 		{
-			headerCtrl.menuItems = [];
-			var pages = scope.$eval(element.attr('pages'));
-			for(var i = 0; i < pages.length; i++)
-			{
-				logger.info('Page = ' + pages[i].Page);
-				headerCtrl.menuItems.push({caption: pages[i].Page});
-			}
+			headerCtrl.staticMenuItems = scope.$eval(element.attr('staticMenuItems'));
+			headerCtrl.addStaticMenuItems()
 		}
 	}
 	

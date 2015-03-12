@@ -38,33 +38,34 @@
 </head>
 
 <body>
-    <div id="topOfPage"></div>
-    
-    <header activeItem="Home" menuItems = "[
-                    {caption: 'Home'},
-                    {caption: 'Sleep Center'},
-                    {caption: 'Bedroom'},
-                    {caption: 'Upholstery Gallery'},
-                    {caption: 'Dining'},
-                    {caption: 'Cabin'},
-                    {caption: 'Rugs'},
-                    {caption: 'Surplus Outlet', target : 'http://www.blackriversurplus.com/'}
-                    ]" > </header> 
-        
+	<div id="topOfPage"></div>
+	
 	
 	<div ng-controller="googleDocsCtrl as googleCtrl">
-        
-<!--         <header activeItem="Home" pages = "googleCtrl.pages" > </header> -->
-         
-        <div data-ng-repeat="page in googleCtrl.pages" ng-if="page.Page.indexOf(activeMenuItem) > -1">
-            <div class="largePicSlider">
-                <fade-in-slider interval="3000" images="{{page.SliderImages}}" ></fade-in-slider>
-            </div> 
-        </div>
-
-        <div id="variableContent" class="content">
-        
-			<div data-ng-repeat="page in googleCtrl.pages" ng-if="page.Page.indexOf(activeMenuItem) > -1">
+		
+		<header activeItem="Home"
+			staticMenuItems="[
+                            {caption: 'Home'},
+                            {caption: 'Surplus Outlet', target : 'http://www.blackriversurplus.com/'}
+                            ]">
+		</header>
+		<!--                             {caption: 'Sleep Center'}, -->
+		<!--                             {caption: 'Bedroom'}, -->
+		<!--                             {caption: 'Upholstery Gallery'}, -->
+		<!--                             {caption: 'Dining'}, -->
+		<!--                             {caption: 'Cabin'}, -->
+		<!--                             {caption: 'Rugs'}, -->
+		
+		<div data-ng-repeat="page in googleCtrl.pages"
+			ng-if="page.Page.indexOf(activeMenuItem) > -1">
+			<div class="largePicSlider">
+				<fade-in-slider interval="3000" images="{{page.SliderImages}}"></fade-in-slider>
+			</div>
+		</div>
+		
+		<div id="variableContent" class="content">
+			<div data-ng-repeat="page in googleCtrl.pages"
+				ng-if="page.Page.indexOf(activeMenuItem) > -1">
 				<div id="contentSection" class="contentSection shadowed rounded">
 					<div class="content-slider-fadeInOut">
 						<div ng-bind-html="page.PageText"></div>
@@ -81,9 +82,8 @@
 						<img class="responsive-shrinkWidth" ng-src="{{ item.Image }}" />
 					</div>
 					<span class="saleitem_name">{{item.Product}} {{item.ModelNbr}}</span>
-					<div class="saleitem_description" ng-bind="item.Description"></div>
+					<div class="saleitem_description" ng-bind-html="item.Description"></div>
 					<div style="margin-top: 10px;">
-						<!-- 						<button class="btn btn-xs btn-success">Add to Cart</button> -->
 						<span class="saleitem_price"> {{item.UnitPrice}}</span>
 					</div>
 					<div class="clearfix"></div>
@@ -92,13 +92,17 @@
 			
 			<div id="contentSection" class="contentSection shadowed rounded">
 				<div class="centered">Our ads.</div>
-				<div style="width: 50%;">
-					<div class="youtubeContainer">
-						<youtube videoid=""></youtube>
-					</div>
-					<div class="centered">Coming soon - ad 1.</div>
-				</div>
+
+                <div class="saleitem" data-ng-repeat="ad in googleCtrl.ads | filter: Active='Yes'">
+                    <div ng-if="ad.Site.indexOf('BRFO') > -1">
+                        <span class="saleitem_title">{{ad.Title}}</span>
+                        <div class="youtubeContainer">
+                            <youtube videoid="{{ad.YouTubeID}}"></youtube>
+                        </div>
+                    </div>
+                </div>
 			</div>
+			
 		</div>
 	</div>
 	
