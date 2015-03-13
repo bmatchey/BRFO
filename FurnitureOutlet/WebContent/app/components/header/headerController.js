@@ -2,7 +2,7 @@ angular.module('app.header', [])
 	.controller('HeaderCtrl', HeaderCtrl)
 	.directive('header', HeaderDirective);
 
-function HeaderCtrl($rootScope, $scope)
+function HeaderCtrl($rootScope, $scope, $location)
 {
 	var vm = this;
 	vm.title = "Black River Furniture Outlet";
@@ -11,6 +11,7 @@ function HeaderCtrl($rootScope, $scope)
 	vm.indexOfCaption = indexOfCaption;
 	vm.menuItemClicked = menuItemClicked;
 	vm.addStaticMenuItems = addStaticMenuItems;
+	vm.getParameterByName = getParameterByName;
 	
 //	menu items.  if target is specified, the menu will route to there.  Otherwise, it only sets rootScope.activeMenuItem.  
 	vm.menuItems = [];
@@ -54,6 +55,17 @@ function HeaderCtrl($rootScope, $scope)
 			}
 		}
 		addStaticMenuItems();
+
+		var startPage = getParameterByName('page');
+		if (startPage.length > 0)
+		{
+			var pageIdx = indexOfCaption(startPage);
+			if (pageIdx > -1)
+			{
+				vm.activeIndex = pageIdx; 
+				$rootScope.activeMenuItem = startPage;
+			}
+		}
 	}
 	
 	function addStaticMenuItems()
@@ -65,6 +77,14 @@ function HeaderCtrl($rootScope, $scope)
 				vm.menuItems.push(vm.staticMenuItems[i]);
 			}
 		}
+	}
+	
+	function getParameterByName(name) 
+	{
+	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+	        results = regex.exec(location.search);
+	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 	}
 	
 }
@@ -87,6 +107,10 @@ function HeaderDirective($rootScope, $parse, logger)
 	function linkFunc(scope, element, attrs, headerCtrl)
 	{
 		headerCtrl.activeIndex = headerCtrl.indexOfCaption(element.attr('activeItem'));
+		if (headerCtrl.activeIndex == -1)
+		{
+			headerCtrl.activeIndex = 0;
+		}
 		$rootScope.activeMenuItem = element.attr('activeItem');
 		if (element.attr('menuItems') != null)
 		{
@@ -95,7 +119,7 @@ function HeaderDirective($rootScope, $parse, logger)
 		if (element.attr('staticMenuItems') != null)
 		{
 			headerCtrl.staticMenuItems = scope.$eval(element.attr('staticMenuItems'));
-			headerCtrl.addStaticMenuItems()
+			headerCtrl.addStaticMenuItems();
 		}
 	}
 	

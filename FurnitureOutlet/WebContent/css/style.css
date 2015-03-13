@@ -131,7 +131,8 @@ img.responsive-shrinkHeight
 .contentSection
 {
 	width:96%;
-	float: left;
+	display: inline-block;
+    vertical-align: top;
 	margin: 0 40px 0 0px;
 	text-align: justify;
 	background-color: white;
@@ -150,6 +151,7 @@ img.responsive-shrinkHeight
 .saleitem
 {
 	display: inline-block;
+    vertical-align: top;
     padding:20px;
     border:1px solid #eee;
     -webkit-box-shadow: 0 1px 2px 1px #eee;
@@ -160,7 +162,7 @@ img.responsive-shrinkHeight
 
 .saleitem_title
 {
-    font-size:22px;
+    font-size:19px;
     font-family: 'Duru Sans', sans-serif;
 }
 
@@ -213,4 +215,22 @@ img.responsive-shrinkHeight
 {
     color: #ff0000;
     font-size: 14px;
+}
+
+.columnedContainer
+{
+	width: 100%;
+}
+
+.columned
+{
+	width: 200px;
+	padding: 10px;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.blockdisplay
+{
+    display: block;
 }

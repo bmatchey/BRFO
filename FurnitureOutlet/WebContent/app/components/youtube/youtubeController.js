@@ -54,8 +54,6 @@ function YouTubeCtrl(logger, youtubeService, YT_event, $scope)
 	{
 		if (!vm.player)
 		{
-            logger.info('YouTube player created - ' + vm.element.children()[0].innerText);
-            
 			vm.player = new YT.Player(vm.element.children()[0],
 					{
 						playerVars :

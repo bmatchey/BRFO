@@ -16,14 +16,14 @@ function GoogleDocsCtrl($timeout, $rootScope)
 	Tabletop.init({
 		key : vm.public_spreadsheet_url,
 		callback : vm.storeCreated,
-		wanted : [ 'BRFO' ],
+		wanted : [ siteName ],
 		simpleSheet : true
 	});
 
 	Tabletop.init({
 		key : vm.public_spreadsheet_url,
 		callback : vm.pagesCreated,
-		wanted : [ 'BRFOPages' ],
+		wanted : [ siteName + 'Pages' ],
 		simpleSheet : true
 	});
 
