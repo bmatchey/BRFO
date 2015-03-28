@@ -2,10 +2,10 @@ angular.module('app.header', [])
 	.controller('HeaderCtrl', HeaderCtrl)
 	.directive('header', HeaderDirective);
 
-function HeaderCtrl($rootScope, $scope, $location)
+function HeaderCtrl($rootScope, $scope, $location, logger)
 {
 	var vm = this;
-	vm.title = "Black River Furniture Outlet";
+	vm.title = (siteName == "BRFO") ? "Black River Furniture Outlet" : "Black River Surplus Outlet";
 	vm.titleClickTarget = "index.html";
 	vm.activeIndex = 0;
 	vm.indexOfCaption = indexOfCaption;

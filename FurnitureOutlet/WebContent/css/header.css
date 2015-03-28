@@ -36,24 +36,6 @@
     display: block;
 }
 
-#mainMenu ul
-{
-    text-align: center;
-    padding-top: 15px;
-    padding-bottom: 10px; 
-}
-
-#mainMenu li
-{
-    display: inline;
-    list-style-type: none;
-    padding-top: 15px;
-    padding-right: 20px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 15px;
-}
-
 #mainMenu a
 {
     white-space:nowrap;
@@ -68,11 +50,41 @@
     text-decoration: none;
 }
 
-#mainMenu li:hover a
+#mainMenu a:hover
 {
+    white-space:nowrap;
+    color:black;
+    text-decoration: none;
+}
+
+#mainMenu ul
+{
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 10px; 
+}
+
+#mainMenu li
+{
+    display: inline;
+    list-style-type: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+#mainMenu li:hover
+{
+    color: black;
     background-color: yellow;
     border: 2px solid #000;
-    color: #000000;
-    padding: 0 9px 2px 9px;
     text-decoration: none;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 18px;
+    padding-right: 18px;
 }

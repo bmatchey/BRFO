@@ -140,7 +140,8 @@ img.responsive-shrinkHeight
 	margin-bottom: 20px;
 }
 
-.saleitems {
+div.responsive-shrinkWidth
+{
     margin-top:20px;
     margin-bottom: 20px;
     margin-left:-1%;
@@ -148,7 +149,7 @@ img.responsive-shrinkHeight
     width: 100%;
 }
 
-.saleitem
+div.inline-bordered-300px
 {
 	display: inline-block;
     vertical-align: top;
@@ -160,24 +161,27 @@ img.responsive-shrinkHeight
     max-width: 300px;   
 }
 
-.saleitem_title
+.product_title
 {
     font-size:19px;
-    font-family: 'Duru Sans', sans-serif;
 }
 
-.saleitem_name
+.product_name
 {
     font-size:18px;
-    font-family: 'Duru Sans', sans-serif;
 }
 
-.saleitem .saleitem_description 
+.product_modelNbr
+{
+    font-size:12px;
+}
+
+.product .product_description 
 {
     color:#888;
 }
 
-.saleitem_price
+.product_price
 {
 	font-size: 14px;
 }
@@ -234,3 +238,20 @@ img.responsive-shrinkHeight
 {
     display: block;
 }
+
+.modal-dialog {width:600px;}
+.thumbnail {margin-bottom:6px;}
+
+    
+.blur {
+    box-shadow: 0px 0px 20px 20px rgba(255,255,255,1);
+    text-shadow: 0px 0px 10px rgba(51, 51, 51, 0.9);
+    transform: scale(0.9);
+    opacity: 0.6;
+    -webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    -o-filter: blur(2px);
+    -ms-filter: blur(2px);
+    filter: blur(2px);
+}
+

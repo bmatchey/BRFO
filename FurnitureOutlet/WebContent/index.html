@@ -20,6 +20,7 @@
     <script src="scripts/angular-animate.min.js"></script>
     <script src="scripts/angular-sanitize.min.js"></script> 
     <script src="scripts/tabletop.js"></script> 
+<!--     <script src="scripts/ui-bootstrap-0.12.1.min.js"></script>  -->
 	
     <script src="app/app.module.js" type="text/javascript"></script>
 
@@ -36,13 +37,12 @@
     <script src="app/components/pictures/picSliderController.js" type="text/javascript"></script>
     <script src="app/components/pictures/picModalController.js" type="text/javascript"></script>
     <script src="app/components/youtube/youtubeController.js" type="text/javascript"></script>
-    <script src="app/components/google/googleDocsController.js" type="text/javascript"></script>
+    <script src="app/components/google/googleDocsController.js" type="text/javascript"></script>    
 
 </head>
 
 <body>
 	<div id="topOfPage"></div>
-	
 	
 	<div ng-controller="googleDocsCtrl as googleCtrl">
 		
@@ -52,12 +52,6 @@
                             {caption: 'Surplus Outlet', target : 'http://www.blackriversurplus.com/'}
                             ]">
 		</header>
-		<!--                             {caption: 'Sleep Center'}, -->
-		<!--                             {caption: 'Bedroom'}, -->
-		<!--                             {caption: 'Upholstery Gallery'}, -->
-		<!--                             {caption: 'Dining'}, -->
-		<!--                             {caption: 'Cabin'}, -->
-		<!--                             {caption: 'Rugs'}, -->
 		
 		<div data-ng-repeat="page in googleCtrl.pages"
 			ng-if="page.Page.indexOf(activeMenuItem) > -1">
@@ -76,36 +70,43 @@
 				</div>
 			</div>
 			
-			<div data-ng-template="table" class="saleitems">
-				<div class="saleitem"
+			<div data-ng-template="table" class="responsive-shrinkWidth">
+				<div class="inline-bordered-300px"
 					data-ng-repeat="item in googleCtrl.items | filter: Active='Yes'"
 					ng-if="item.Pages.indexOf(activeMenuItem) > -1">
-					<span class="saleitem_title">{{item.Title}}</span>
+					<span class="product_title">{{item.Title}}</span>
 					<div class="imgContainer">
-						<img class="responsive-shrinkWidth" ng-src="{{ item.Image }}" />
+						<a href="{{ item.Image }}" target="_blank" ><img class="responsive-shrinkWidth" ng-src="{{ item.Image }}" /></a>
 					</div>
-					<span class="saleitem_name">{{item.Product}} {{item.ModelNbr}}</span>
-					<div class="saleitem_description" ng-bind-html="item.Description"></div>
+					<div class="product_name">{{item.Product}}</div>
+					<div class="product_modelNbr" ng-if="item.ModelNbr">Model: {{item.ModelNbr}}</div>
+					<div class="product_description" ng-bind-html="item.Description"></div>
 					<div style="margin-top: 10px;">
-						<span class="saleitem_price"> {{item.UnitPrice}}</span>
+						<span class="product_price"> {{item.UnitPrice}}</span>
 					</div>
 					<div class="clearfix"></div>
 				</div>
 			</div>
-			
-            <div id="contentSection" class="contentSection shadowed rounded">
+						
+            <div id="contentSection" class="contentSection shadowed rounded" ng-if="(googleCtrl.ads | filter: Active='Yes').length > 0">
                 <div class="centered">Our ads.</div>
 
-                <div class="saleitems">
-                    <div data-ng-repeat="ad in googleCtrl.ads | filter: Active='Yes'" class="saleitem" ng-if="ad.Site.indexOf('BRFO') > -1">
-                        <span class="saleitem_title">{{ad.Title}}</span>
-                        <div class="youtubeContainer">
+                <div class="responsive-shrinkWidth">
+                    <div data-ng-repeat="ad in googleCtrl.ads | filter: Active='Yes'" class="inline-bordered-300px" ng-if="ad.Site.indexOf('BRFO') > -1">
+                        <span class="product_title">{{ad.Title}}</span>
+                        <div class="youtubeContainer" ng-if="ad.YouTubeID">
                             <youtube videoid="{{ad.YouTubeID}}"></youtube>
+                        </div>
+                        <div class="youtubeContainer" ng-if="ad.Image">
+		                    <div class="imgContainer">
+                                <a href="{{ ad.Image }}" title="{{ad.Title}}" target="_blank" >
+                                    <img class="responsive-shrinkWidth" ng-src="{{ ad.Image }}" />
+                                </a>
+		                    </div>
                         </div>
                     </div>
                 </div>
             </div>
-			
 		</div>
 	</div>
 	
