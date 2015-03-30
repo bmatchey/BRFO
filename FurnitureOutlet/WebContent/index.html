@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/youtube.css">
+    <link rel="stylesheet" href="css/picModalDialog.css">
 	  
     <script src="scripts/jquery-1.11.2.min.js"></script>
     <script src="scripts/angular.min.js"></script> 
@@ -43,7 +44,7 @@
 
 <body>
 	<div id="topOfPage"></div>
-	
+		
 	<div ng-controller="googleDocsCtrl as googleCtrl">
 		
 		<header activeItem="Home"
@@ -52,7 +53,7 @@
                             {caption: 'Surplus Outlet', target : 'http://www.blackriversurplus.com/'}
                             ]">
 		</header>
-		
+		  		
 		<div data-ng-repeat="page in googleCtrl.pages"
 			ng-if="page.Page.indexOf(activeMenuItem) > -1">
 			<div class="largePicSlider">
@@ -75,9 +76,14 @@
 					data-ng-repeat="item in googleCtrl.items | filter: Active='Yes'"
 					ng-if="item.Pages.indexOf(activeMenuItem) > -1">
 					<span class="product_title">{{item.Title}}</span>
-					<div class="imgContainer">
-						<a href="{{ item.Image }}" target="_blank" ><img class="responsive-shrinkWidth" ng-src="{{ item.Image }}" /></a>
-					</div>
+					<div class="imgContainer">					
+						<div ng-controller="picModalCtrl as picModalCtrl">
+							<img class="responsive-shrinkWidth" ng-src="{{ item.Image }}" ng-click="picModalCtrl.toggleModal()" />
+							<modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto">
+							<img ng-src="{{ item.Image }}" width="100%" height="auto"
+								ng-click="picModalCtrl.toggleModal()" /> </modal-dialog>
+						</div>
+					</div>					
 					<div class="product_name">{{item.Product}}</div>
 					<div class="product_modelNbr" ng-if="item.ModelNbr">Model: {{item.ModelNbr}}</div>
 					<div class="product_description" ng-bind-html="item.Description"></div>
@@ -99,17 +105,20 @@
                         </div>
                         <div class="youtubeContainer" ng-if="ad.Image">
 		                    <div class="imgContainer">
-                                <a href="{{ ad.Image }}" title="{{ad.Title}}" target="_blank" >
-                                    <img class="responsive-shrinkWidth" ng-src="{{ ad.Image }}" />
-                                </a>
-		                    </div>
+		                        <div ng-controller="picModalCtrl as picModalCtrl">
+		                            <img class="responsive-shrinkWidth" ng-src="{{ ad.Image }}" ng-click="picModalCtrl.toggleModal()" />
+		                            <modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto">
+		                            <img ng-src="{{ ad.Image }}" width="100%" height="auto"
+		                                ng-click="picModalCtrl.toggleModal()" /> </modal-dialog>
+		                        </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 		</div>
 	</div>
-	
+		
 	<brands ></brands>
 
     <footer domain='BRFO' ></footer>  

@@ -13,14 +13,24 @@
 		</div>
 		<div class="footerFloatLeft">
 			<h3 style="text-align: center;">
-				<span
-					style="text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.66); color: #3677DB;">W10003
-					Wisconsin 54, Black River Falls, WI 54615</span>
+				<span style="text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.66); color: #3677DB;">
+				    <div ng-if="footerCtrl.domain == 'BRFO'">
+					   W10003 Wisconsin 54, Black River Falls, WI 54615
+					</div>
+                    <div ng-if="footerCtrl.domain == 'BRSO'">
+                       N5933 Wisconsin 54, Black River Falls, WI 54615
+                    </div>
+				</span>
 			</h3>
 			<h2 style="text-align: center;">
-				<span
-					style="text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.66);; color: #3677DB;">(715)
-					284-4001</span>
+				<span style="text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.66);; color: #3677DB;">
+                    <div ng-if="footerCtrl.domain == 'BRFO'">
+                        (715) 284-4001
+                    </div>
+                    <div ng-if="footerCtrl.domain == 'BRSO'">
+                        (715) 284-4003
+                    </div>
+				</span>
 			</h2>
 		</div>
 		<div class="footerFloatLeft">
@@ -54,7 +64,12 @@
 			<a href="##topOfPage" rel="nofollow">Top</a>
 		</div>
 		<div class="creds">
-			<p>© 2015 · Black River Furniture Outlet</p>
+            <div ng-if="footerCtrl.domain == 'BRFO'">
+                © 2015 · Black River Furniture Outlet
+            </div>
+            <div ng-if="footerCtrl.domain == 'BRSO'">
+                © 2015 · Black River Surplus Outlet
+            </div>
 		</div>
 	</div>
 </div>
