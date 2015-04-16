@@ -4,7 +4,7 @@ angular.module('app.picslider', ['ngAnimate'])
 	.factory('changePicsService', ChangePicsService);
 
 
-function SliderCtrl(logger, $timeout, $animate, $scope)
+function SliderCtrl(logger, $timeout, $animate, $rootScope, $scope)
 {
 	var vm = this;
 	vm.sliderNext = sliderNext;
@@ -36,11 +36,54 @@ function SliderCtrl(logger, $timeout, $animate, $scope)
 	// Turn on the slider.
 	sliderFunc();
 	
+	function adjustImages(args)
+	{
+		var images = [];
+		for (var i = 0; i < args.length; i++)
+		{
+			if ((args[i].src != null) && (args[i].Active == 'Yes' || args[i].Active == null) && (args[i].Site == null || args[i].Site.indexOf(siteName) > -1)) 
+			{
+				var src;
+				if (args[i].src.indexOf('http') != 0)
+				{
+					src  = vm.srcFolder + '/' + args[i].src;					
+				}
+				else
+				{
+					src = args[i].src;
+				}
+				
+				images.push({src: src, title: args[i].title, target: args[i].target});
+			}
+		}
+		
+		return images;
+	}
+	
 	$scope.$on('handlePicsChanged', handlePicsChanged);
 	function handlePicsChanged()
 	{
 		$scope.sliderImages = changePicsService.images;
 	}
+	
+	$scope.$on('sliderChanged', handleSliderChanged);
+	function handleSliderChanged(event, args)
+	{
+		vm.sliderImages = adjustImages(args);
+	}
+		
+//	$scope.$on('menuPagesChanged', handlePagesChanged);
+//	function handlePagesChanged(event, args)
+//	{
+//		var images = [];
+//		for (var i = 0; i < args.length; i++)
+//		{
+//			images = args[i].SliderImages; 
+//			logger.info(JSON.stringify(images) + " length = " + images.length);
+//			args[i].SliderImages = adjustImages(images);
+//		}
+//	}
+	
 }
 
 function FadeInSliderDirective($parse, logger)

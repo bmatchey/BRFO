@@ -1,11 +1,28 @@
 @CHARSET "UTF-8";
 
+html, body 
+{
+    margin: 0;
+    min-height: 100%;
+}
+
+body 
+{
+  position: relative; 
+}
+
 .largePicSlider
 {
     background-image: url(../assets/picSliderBackground.png);  /* use a small image background if neither of the gradients are supported. */
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2664CD), to(#3D83E2));
     background-image: -moz-linear-gradient(19% 75% 90deg,#3D83E2, #2664CD);
-    max-height: 400px;
+    width: 100%;
+    height: auto; 
+    margin: 0 auto;
+}
+
+.largePicSliderTransparent
+{
     width: 100%;
     height: auto; 
     margin: 0 auto;
@@ -14,10 +31,10 @@
 .picSliderContainer
 {
     text-align: center; 
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+/*     padding-top: 10px; */
+/*     padding-bottom: 10px; */
+/*     padding-left: 10px; */
+/*     padding-right: 10px; */
     position:relative;
 }
 
@@ -29,14 +46,7 @@
   -moz-transition: opacity 0.25s ease-in-out;
   -o-transition: opacity 0.25s ease-in-out;
   transition: opacity 0.25s ease-in-out;
-
-    /* max-height = picSliderContainer max-height - picSliderContainer.padding - bordered.border */  
-  max-height: 350px;
-  
-  /* http://www.palantir.net/blog/responsive-design-s-dirty-little-secret */
-/*   margin-left: 0; */
-/*   margin-right: -100%; */
-/*   float: left; */
+  max-height: 400px;
 }
 
 .repeat-slider.ng-hide-remove
@@ -52,7 +62,8 @@
 }
 
 
-.content-slider-fadeInOut.ng-enter {
+.content-slider-fadeInOut.ng-enter 
+{
   opacity: 0;
   -webkit-transition:all linear 1s;
   -moz-transition:all linear 1s;
@@ -60,7 +71,8 @@
   transition: opacity 1s;
 }
 
-.content-slider-fadeInOut.ng-enter.ng-enter-active {
+.content-slider-fadeInOut.ng-enter.ng-enter-active 
+{
   opacity: 1.0;
 }
 
@@ -111,41 +123,12 @@ img.responsive-shrinkHeight
     width: auto;
 }
 
-.content 
-{
-	background-color: rgb(233, 240, 82);
-	overflow: hidden;
-	background: #fceabb;
-	background: -moz-linear-gradient(top, #fceabb 0%, #f8e000 28%, #f8e000 55%, #f7e75b 74%, #fbdf93 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fceabb), color-stop(28%,#f8e000), color-stop(55%,#f8e000), color-stop(74%,#f7e75b), color-stop(100%,#fbdf93));
-	background: -webkit-linear-gradient(top, #fceabb 0%,#f8e000 28%,#f8e000 55%,#f7e75b 74%,#fbdf93 100%);
-	background: -o-linear-gradient(top, #fceabb 0%,#f8e000 28%,#f8e000 55%,#f7e75b 74%,#fbdf93 100%);
-	background: -ms-linear-gradient(top, #fceabb 0%,#f8e000 28%,#f8e000 55%,#f7e75b 74%,#fbdf93 100%);
-	background: linear-gradient(to bottom, #fceabb 0%,#f8e000 28%,#f8e000 55%,#f7e75b 74%,#fbdf93 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93',GradientType=0 );
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 40px;
-}
-
-.contentSection
-{
-	width:96%;
-	display: inline-block;
-    vertical-align: top;
-	margin: 0 40px 0 0px;
-	text-align: justify;
-	background-color: white;
-	padding: 20px;
-	margin-bottom: 20px;
-}
-
 div.responsive-shrinkWidth
 {
-    margin-top:20px;
-    margin-bottom: 20px;
-    margin-left:-1%;
-    margin-right:-1%;
+/*     margin-top:20px; */
+/*     margin-bottom: 20px; */
+/*     margin-left:-1%; */
+/*     margin-right:-1%; */
     width: 100%;
 }
 
@@ -161,29 +144,16 @@ div.inline-bordered-300px
     max-width: 300px;   
 }
 
-.product_title
+div.divWithBackground
 {
-    font-size:19px;
+    background-size: 100% 100%;
+    padding-bottom: 5%;
 }
 
-.product_name
+div.fullWidthExpandHeight
 {
-    font-size:18px;
-}
-
-.product_modelNbr
-{
-    font-size:12px;
-}
-
-.product .product_description 
-{
-    color:#888;
-}
-
-.product_price
-{
-	font-size: 14px;
+    width: 100%; 
+    height: auto;
 }
 
 .centered
@@ -192,10 +162,10 @@ div.inline-bordered-300px
     text-align: center;
 }
 
-.rightaligned
+.alignRight
 {
-    width : 100%;
     text-align: right;
+    width: 100%;
 }
 
 .bolded
@@ -253,5 +223,54 @@ div.inline-bordered-300px
     -o-filter: blur(2px);
     -ms-filter: blur(2px);
     filter: blur(2px);
+}
+
+
+@media all and (min-width: 960px) 
+{
+.responsiveTextLarge
+{
+    font-size: 50px;
+}
+.responsiveText
+{
+    font-size: 25px;
+}
+.responsiveTextSmall
+{
+    font-size: 10px;
+}
+}
+
+@media all and (max-width: 959px) and (min-width: 600px) 
+{
+.responsiveTextLarge
+{
+    font-size: 5vw;
+}
+.responsiveText
+{
+    font-size: 2.5vw;
+}
+.responsiveTextSmall
+{
+    font-size: 1vw;
+}
+}
+
+@media all and (max-width: 599px) and (min-width: 50px) 
+{
+.responsiveTextLarge
+{
+    font-size: 6vw;
+}
+.responsiveText
+{
+    font-size: 3vw;
+}
+.responsiveTextSmall
+{
+    font-size: 1.5vw;
+}
 }
 

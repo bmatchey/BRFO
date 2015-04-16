@@ -1,0 +1,55 @@
+@CHARSET "UTF-8";
+
+.content 
+{
+    background-color: rgb(233, 240, 82);
+    overflow: hidden;
+    background: #fceabb;
+    background: -moz-linear-gradient(top, #fceabb 0%, #f8e000 28%, #f8e000 55%, #f7e75b 74%, #fbdf93 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fceabb), color-stop(28%,#f8e000), color-stop(55%,#f8e000), color-stop(74%,#f7e75b), color-stop(100%,#fbdf93));
+    background: -webkit-linear-gradient(top, #fceabb 0%,#f8e000 28%,#f8e000 55%,#f7e75b 74%,#fbdf93 100%);
+    background: -o-linear-gradient(top, #fceabb 0%,#f8e000 28%,#f8e000 55%,#f7e75b 74%,#fbdf93 100%);
+    background: -ms-linear-gradient(top, #fceabb 0%,#f8e000 28%,#f8e000 55%,#f7e75b 74%,#fbdf93 100%);
+    background: linear-gradient(to bottom, #fceabb 0%,#f8e000 28%,#f8e000 55%,#f7e75b 74%,#fbdf93 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fceabb', endColorstr='#fbdf93',GradientType=0 );
+    padding-left: 40px;
+    padding-right: 40px;
+    padding-top: 40px;
+}
+
+.contentSection
+{
+    width:96%;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 40px 0 0px;
+    text-align: justify;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.product_title
+{
+    font-size:19px;
+}
+
+.product_name
+{
+    font-size:18px;
+}
+
+.product_modelNbr
+{
+    font-size:12px;
+}
+
+.product .product_description 
+{
+    color:#888;
+}
+
+.product_price
+{
+    font-size: 14px;
+}

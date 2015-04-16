@@ -1,21 +1,34 @@
 <div class="picSliderContainer">
 	<div id="animatedPic" ng-repeat="pic in sliderCtrl.sliderImages track by $index">
-		<a href="{{pic.target}}" > 
           <div ng-if="sliderCtrl.sliderImages != null">
-			  <div ng-if="pic.src.indexOf('http') == 0">
-	            <img ng-src="{{pic.src}}"
-	                class="responsive-shrinkWidth bordered repeat-slider"
-	                ng-show="sliderCtrl.sliderIndex == $index" title="{{pic.title}}" />
-			  </div>
-	          <div ng-if="pic.src.indexOf('http') != 0">
-	            <img ng-src="{{sliderCtrl.srcFolder + '/' + pic.src}}"
-	                class="responsive-shrinkWidth bordered repeat-slider"
-	                ng-show="sliderCtrl.sliderIndex == $index" title="{{pic.title}}" />
-	          </div>
+                <div class="imgContainer">
+                    <div ng-controller="picModalCtrl as picModalCtrl">
+                        
+                        <img class="responsive-shrinkWidth rounded repeat-slider" 
+                          ng-show="sliderCtrl.sliderIndex == $index" title="{{pic.title}}"
+                          ng-src="{{pic.src}}" ng-click="picModalCtrl.toggleModal()" />
+                          
+                        <modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto">
+                        
+                        <img ng-src="{{pic.src}}" width="100%" height="auto"
+                            ng-click="picModalCtrl.toggleModal()" /> </modal-dialog>
+                    </div>
+                </div>
           </div>
-<!-- 			<img ng-src="{{pic.src.indexOf('http://') > -1 && pic.src || sliderCtrl.srcFolder + '/' + pic.src}}" -->
-<!-- 				class="responsive-shrinkWidth bordered repeat-slider" -->
-<!-- 				ng-show="sliderCtrl.sliderIndex == $index" title="{{pic.title}}" /> -->
-		</a>
+	
+<!-- 		<a href="{{pic.target}}" >  -->
+<!--           <div ng-if="sliderCtrl.sliderImages != null"> -->
+<!-- 			  <div ng-if="pic.src.indexOf('http') == 0"> -->
+<!-- 	            <img ng-src="{{pic.src}}" -->
+<!-- 	                class="responsive-shrinkWidth rounded repeat-slider" -->
+<!-- 	                ng-show="sliderCtrl.sliderIndex == $index" title="{{pic.title}}" /> -->
+<!-- 			  </div> -->
+<!-- 	          <div ng-if="pic.src.indexOf('http') != 0"> -->
+<!-- 	            <img ng-src="{{sliderCtrl.srcFolder + '/' + pic.src}}" -->
+<!-- 	                class="responsive-shrinkWidth rounded repeat-slider" -->
+<!-- 	                ng-show="sliderCtrl.sliderIndex == $index" title="{{pic.title}}" /> -->
+<!-- 	          </div> -->
+<!--           </div> -->
+<!--         </a> -->
 	</div>
 </div>

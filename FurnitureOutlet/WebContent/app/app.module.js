@@ -21,6 +21,7 @@
          * Feature areas
          */
         'app.header',
+        'app.logo',
         'app.footer',
         'app.brands',
         'app.picslider',

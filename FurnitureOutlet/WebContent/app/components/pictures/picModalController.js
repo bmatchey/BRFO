@@ -11,7 +11,6 @@ function PicModalCtrl(logger)
 	function toggleModal()
 	{
 		vm.modalShown = !vm.modalShown;
-		logger.info('toggleModal clicked - shown = ' + vm.modalShown);
 	}
 }
 

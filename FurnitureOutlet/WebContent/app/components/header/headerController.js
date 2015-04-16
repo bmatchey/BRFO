@@ -1,6 +1,7 @@
 angular.module('app.header', [])
 	.controller('HeaderCtrl', HeaderCtrl)
-	.directive('header', HeaderDirective);
+	.directive('header', HeaderDirective)
+	.directive('menulist', MenuListDirective);
 
 function HeaderCtrl($rootScope, $scope, $location, logger)
 {
@@ -12,6 +13,7 @@ function HeaderCtrl($rootScope, $scope, $location, logger)
 	vm.menuItemClicked = menuItemClicked;
 	vm.addStaticMenuItems = addStaticMenuItems;
 	vm.getParameterByName = getParameterByName;
+	vm.handlePagesChanged = handlePagesChanged;
 	
 //	menu items.  if target is specified, the menu will route to there.  Otherwise, it only sets rootScope.activeMenuItem.  
 	vm.menuItems = [];
@@ -40,10 +42,10 @@ function HeaderCtrl($rootScope, $scope, $location, logger)
 		{
 			vm.activeIndex = indexOfCaption(item.caption);
 			$rootScope.activeMenuItem = item.caption;
+			$rootScope.$broadcast('menuActiveChanged', item);
 		}
 	}
 	
-	$scope.$on('menuPagesChanged', handlePagesChanged);
 	function handlePagesChanged(event, args)
 	{
 		vm.menuItems = [];
@@ -93,7 +95,7 @@ function HeaderDirective($rootScope, $parse, logger)
 {
 	var directive = 
 	{
-		restrict: 'AE',
+		restrict: 'E',
 		replace: true,
 		transclude: true,
         templateUrl: "app/components/header/header.tpl.html",
@@ -121,6 +123,40 @@ function HeaderDirective($rootScope, $parse, logger)
 			headerCtrl.staticMenuItems = scope.$eval(element.attr('staticMenuItems'));
 			headerCtrl.addStaticMenuItems();
 		}
+
+		scope.$on('menuPagesChanged', headerCtrl.handlePagesChanged);
 	}
+}
+
+function MenuListDirective($rootScope, $parse, logger)
+{
+	var directive = 
+	{
+		restrict: 'AE',
+		replace: true,
+        controller: HeaderCtrl,
+        controllerAs: 'menuCtrl',
+        link: linkFunc
+	};
 	
+	return directive;
+	
+	function linkFunc(scope, element, attrs, menuCtrl)
+	{
+		menuCtrl.activeIndex = menuCtrl.indexOfCaption(element.attr('activeItem'));
+		if (menuCtrl.activeIndex == -1)
+		{
+			menuCtrl.activeIndex = 0;
+		}
+		$rootScope.activeMenuItem = element.attr('activeItem');
+		if (element.attr('menuItems') != null)
+		{
+			menuCtrl.menuItems = scope.$eval(element.attr('menuItems'));
+		}
+		if (element.attr('staticMenuItems') != null)
+		{
+			menuCtrl.staticMenuItems = scope.$eval(element.attr('staticMenuItems'));
+			menuCtrl.addStaticMenuItems();
+		}
+	}
 }

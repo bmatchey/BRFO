@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="css/html5reset-1.6.1.css">
     <link rel="stylesheet" type="text/css" href="scripts/bootstrap-3.3.2-dist/css/bootstrap.css" />
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/prevelantBackgroundStyle.css">
+    <link rel="stylesheet" href="css/oldBoxyStyle.css">
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/youtube.css">
@@ -21,7 +23,6 @@
     <script src="scripts/angular-animate.min.js"></script>
     <script src="scripts/angular-sanitize.min.js"></script> 
     <script src="scripts/tabletop.js"></script> 
-<!--     <script src="scripts/ui-bootstrap-0.12.1.min.js"></script>  -->
 	
     <script src="app/app.module.js" type="text/javascript"></script>
 
@@ -33,6 +34,7 @@
     
     <script src="app/core/core.module.js" type="text/javascript"></script>
     <script src="app/components/header/headerController.js" type="text/javascript"></script>
+    <script src="app/components/header/logoController.js" type="text/javascript"></script>
     <script src="app/components/footer/footerController.js" type="text/javascript"></script>
     <script src="app/components/brands/brandsController.js" type="text/javascript"></script>
     <script src="app/components/pictures/picSliderController.js" type="text/javascript"></script>
@@ -43,23 +45,153 @@
 </head>
 
 <body>
-	<div id="topOfPage"></div>
+    <div id="topOfPage"></div>       
+
+    <div id="divSiteBackground" ng-show="true" class="divWithBackground" ng-controller="googleDocsCtrl as googleCtrl" ng-style="{'background-image' : 'url(' + googleCtrl.backgroundPic + ')'}" >
+    
+        <div id="divTopFiller" >
+            <div class="fullWidthExpandHeight">
+                <div id="divPhoneNumber" class="responsiveTextLarge alignRight">
+                    <div ng-if="googleCtrl.siteName == 'BRFO'">
+                        Call: (715) 284-4001
+                    </div>
+                    <div ng-if="googleCtrl.siteName == 'BRSO'">
+                        Call: (715) 284-4003
+                    </div>
+                </div>
+
+                <div id="divSlogan">
+                    Wisconsin's Best Priced Furniture Store
+                </div>
+                
+                <div id="divMainMenu">
+	                <menulist activeItem="Home"
+	                    menuItems="[
+	                                    {caption: 'Home'},
+                                        {caption: 'Showcase'},
+                                        {caption: 'About'},
+	                                    {caption: 'Surplus Outlet', target : 'http://www.blackriversurplus.com/'}
+	                                    ]">
+                        <ul>
+				            <li ng-repeat="item in menuCtrl.menuItems track by $index" ng-click="menuCtrl.menuItemClicked(item)" ng-class="{'active': $index == menuCtrl.activeIndex}">
+				                <span>{{item.caption}}</span>
+				            </li>
+                        </ul>
+	                </menulist>
+                </div>
+            </div>
+            
+            <logo-circle title="Black River Furniture Outlet" ></logo-circle>
+        </div>
+        
+        <div id="variableContent">
+	        <div id="divContentContainer" class="shadowed rounded">
+	            <div ng-if="!googleCtrl.isloaded" style="padding: 25px;" >
+	                Loading content.  Please wait...  <img src="assets/spinner_small.gif" />
+	            </div>
+
+                <div class="largePicSlider" ng-show="activeMenuItem == 'Home'">
+                    <fade-in-slider interval="3000" images="sliderImages"></fade-in-slider>
+                </div>
+	            
+	            <div ng-switch on="activeMenuItem">
+	               <div ng-switch-when="Showcase">
+	                   <input ng-model="query" type="text" placeholder="Type here to search" style="padding-left: 150px;">
+	                   
+			            <div data-ng-template="table" class="responsive-shrinkWidth">
+			            
+			                <div class="inline-bordered-300px"
+			                    data-ng-repeat="item in googleCtrl.items | filter: Active='Yes' | filter: query | limitTo: googleCtrl.maxShowcase">
+			            
+			                    <span class="product_title">{{item.Title}}</span>
+			            
+			                    <div class="imgContainer">                  
+			                        <div ng-controller="picModalCtrl as picModalCtrl">
+			                            <img class="responsive-shrinkWidth" ng-src="{{ item.Image }}" ng-click="picModalCtrl.toggleModal()" />
+			                            <modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto">
+			                            <img ng-src="{{ item.Image }}" width="100%" height="auto"
+			                                ng-click="picModalCtrl.toggleModal()" /> </modal-dialog>
+			                        </div>
+			                    </div>                  
+			                    <div class="product_name">{{item.Product}}</div>
+			                    <div class="product_modelNbr" ng-if="item.ModelNbr">Model: {{item.ModelNbr}}</div>
+			                    <div class="product_description" ng-bind-html="item.Description"></div>
+			                    <div style="margin-top: 10px;">
+			                        <span class="product_price"> {{item.UnitPrice}}</span>
+			                    </div>
+			                    <div class="clearfix"></div>
+			                </div>
+			            </div>
+	               </div>
+                   
+                   <div ng-switch-when="Ads">
+		                <div class="centered">Our ads.</div>
 		
-	<div ng-controller="googleDocsCtrl as googleCtrl">
+		                <div class="responsive-shrinkWidth">
+		                    <div data-ng-repeat="ad in googleCtrl.ads | filter: Active='Yes'" class="inline-bordered-300px" ng-if="ad.Site.indexOf('BRFO') > -1">
+		                        <span class="product_title">{{ad.Title}}</span>
+		                        <div class="youtubeContainer" ng-if="ad.YouTubeID">
+		                            <youtube videoid="{{ad.YouTubeID}}"></youtube>
+		                        </div>
+		                        <div class="youtubeContainer" ng-if="ad.Image">
+		                            <div class="imgContainer">
+		                                <div ng-controller="picModalCtrl as picModalCtrl">
+		                                    <img class="responsive-shrinkWidth" ng-src="{{ ad.Image }}" ng-click="picModalCtrl.toggleModal()" />
+		                                    <modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto">
+		                                    <img ng-src="{{ ad.Image }}" width="100%" height="auto"
+		                                        ng-click="picModalCtrl.toggleModal()" /> </modal-dialog>
+		                                </div>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+                   </div>
+                   
+                   <div ng-switch-when="About">
+                        <div ng-bind-html="googleCtrl.missionStatement" class="contentSection"></div>
+                        <brands ></brands>
+				        <footer domain='BRFO' ></footer>  
+                   </div>
+	            </div>
+	            
+	        </div>
+        </div>
+        
+        <div id="divAddressContainer" >
+            <div ng-if="googleCtrl.siteName == 'BRFO'" class="responsiveText sendToBack">
+               W10003 Wisconsin 54, <br>Black River Falls, WI 54615
+            </div>
+            <div ng-if="googleCtrl.siteName == 'BRSO'" class="responsiveText sendToBack">
+               N5933 Wisconsin 54, <br>Black River Falls, WI 54615
+            </div>
+        </div>
+        
+        <div id="divStoreHours" class="responsiveText">
+           Store Hours 
+           <br> Mon. - Fri. 8 a.m. - 7 p.m. 
+           <br> Sat. 8 a.m. - 6 p.m.
+           <br> Sun. Noon - 5 p.m.
+        </div>
+        
+        <div id="divBottomFiller">
+        </div>
+    </div>
+
+	<div ng-controller="googleDocsCtrl as googleCtrl" ng-show="false">
 		
 		<header activeItem="Home"
 			staticMenuItems="[
-                            {caption: 'Home'},
-                            {caption: 'Surplus Outlet', target : 'http://www.blackriversurplus.com/'}
-                            ]">
+                              {caption: 'Home'},  
+                              {caption: 'Surplus Outlet', target : 'http://www.blackriversurplus.com/'}  
+                              ]">  
 		</header>
 		  		
-		<div data-ng-repeat="page in googleCtrl.pages"
-			ng-if="page.Page.indexOf(activeMenuItem) > -1">
-			<div class="largePicSlider">
-				<fade-in-slider interval="3000" images="{{page.SliderImages}}"></fade-in-slider>
-			</div>
-		</div>
+<!-- 		<div data-ng-repeat="page in googleCtrl.pages" -->
+<!-- 			ng-if="page.Page.indexOf(activeMenuItem) > -1"> -->
+<!-- 			<div class="largePicSlider"> -->
+<!-- 				<fade-in-slider interval="3000" images="{{page.SliderImages}}"></fade-in-slider> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 		
 		<div id="variableContent" class="content">
 			<div data-ng-repeat="page in googleCtrl.pages"
@@ -117,11 +249,12 @@
                 </div>
             </div>
 		</div>
-	</div>
-		
-	<brands ></brands>
 
-    <footer domain='BRFO' ></footer>  
+        
+	    <brands ></brands>
+	
+	    <footer domain='BRFO' ></footer>  
+	</div>
 
 </body>
 </html>
