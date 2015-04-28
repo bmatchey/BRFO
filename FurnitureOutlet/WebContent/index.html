@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/youtube.css">
     <link rel="stylesheet" href="css/picModalDialog.css">
+    <link rel="stylesheet" href="css/animations.css">
 	  
     <script src="scripts/jquery-1.11.2.min.js"></script>
     <script src="scripts/angular.min.js"></script> 
@@ -83,15 +84,15 @@
             
             <logo-circle title="Black River Furniture Outlet" ></logo-circle>
         </div>
-        
+
         <div id="variableContent">
 	        <div id="divContentContainer" class="shadowed rounded">
 	            <div ng-if="!googleCtrl.isloaded" style="padding: 25px;" >
 	                Loading content.  Please wait...  <img src="assets/spinner_small.gif" />
 	            </div>
-
+	            
                 <div class="largePicSlider" ng-show="activeMenuItem == 'Home'">
-                    <fade-in-slider interval="3000" images="sliderImages"></fade-in-slider>
+                    <fade-in-slider interval="4000" images="sliderImages"></fade-in-slider>
                 </div>
 	            
 	            <div ng-switch on="activeMenuItem">
@@ -176,85 +177,6 @@
         <div id="divBottomFiller">
         </div>
     </div>
-
-	<div ng-controller="googleDocsCtrl as googleCtrl" ng-show="false">
-		
-		<header activeItem="Home"
-			staticMenuItems="[
-                              {caption: 'Home'},  
-                              {caption: 'Surplus Outlet', target : 'http://www.blackriversurplus.com/'}  
-                              ]">  
-		</header>
-		  		
-<!-- 		<div data-ng-repeat="page in googleCtrl.pages" -->
-<!-- 			ng-if="page.Page.indexOf(activeMenuItem) > -1"> -->
-<!-- 			<div class="largePicSlider"> -->
-<!-- 				<fade-in-slider interval="3000" images="{{page.SliderImages}}"></fade-in-slider> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-		
-		<div id="variableContent" class="content">
-			<div data-ng-repeat="page in googleCtrl.pages"
-				ng-if="page.Page.indexOf(activeMenuItem) > -1">
-				<div id="contentSection" class="contentSection shadowed rounded">
-					<div class="content-slider-fadeInOut">
-						<div ng-bind-html="page.PageText"></div>
-					</div>
-				</div>
-			</div>
-			
-			<div data-ng-template="table" class="responsive-shrinkWidth">
-				<div class="inline-bordered-300px"
-					data-ng-repeat="item in googleCtrl.items | filter: Active='Yes'"
-					ng-if="item.Pages.indexOf(activeMenuItem) > -1">
-					<span class="product_title">{{item.Title}}</span>
-					<div class="imgContainer">					
-						<div ng-controller="picModalCtrl as picModalCtrl">
-							<img class="responsive-shrinkWidth" ng-src="{{ item.Image }}" ng-click="picModalCtrl.toggleModal()" />
-							<modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto">
-							<img ng-src="{{ item.Image }}" width="100%" height="auto"
-								ng-click="picModalCtrl.toggleModal()" /> </modal-dialog>
-						</div>
-					</div>					
-					<div class="product_name">{{item.Product}}</div>
-					<div class="product_modelNbr" ng-if="item.ModelNbr">Model: {{item.ModelNbr}}</div>
-					<div class="product_description" ng-bind-html="item.Description"></div>
-					<div style="margin-top: 10px;">
-						<span class="product_price"> {{item.UnitPrice}}</span>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
-						
-            <div id="contentSection" class="contentSection shadowed rounded" ng-if="(googleCtrl.ads | filter: Active='Yes').length > 0">
-                <div class="centered">Our ads.</div>
-
-                <div class="responsive-shrinkWidth">
-                    <div data-ng-repeat="ad in googleCtrl.ads | filter: Active='Yes'" class="inline-bordered-300px" ng-if="ad.Site.indexOf('BRFO') > -1">
-                        <span class="product_title">{{ad.Title}}</span>
-                        <div class="youtubeContainer" ng-if="ad.YouTubeID">
-                            <youtube videoid="{{ad.YouTubeID}}"></youtube>
-                        </div>
-                        <div class="youtubeContainer" ng-if="ad.Image">
-		                    <div class="imgContainer">
-		                        <div ng-controller="picModalCtrl as picModalCtrl">
-		                            <img class="responsive-shrinkWidth" ng-src="{{ ad.Image }}" ng-click="picModalCtrl.toggleModal()" />
-		                            <modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto">
-		                            <img ng-src="{{ ad.Image }}" width="100%" height="auto"
-		                                ng-click="picModalCtrl.toggleModal()" /> </modal-dialog>
-		                        </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-		</div>
-
-        
-	    <brands ></brands>
-	
-	    <footer domain='BRFO' ></footer>  
-	</div>
 
 </body>
 </html>

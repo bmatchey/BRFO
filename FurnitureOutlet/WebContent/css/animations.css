@@ -1,0 +1,141 @@
+
+
+.fadeinout
+{
+  -webkit-transition: opacity 0.25s ease-in-out;
+  -moz-transition: opacity 0.25s ease-in-out;
+  -o-transition: opacity 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out;
+  max-height: 400px;
+}
+
+.fadeinout.ng-hide-remove
+{
+    z-index = -1;
+    opacity: 0;
+}
+
+/* Animations.  Typically, a cross fade would have opacity:0 and opacity:1, but that deosn't work unless you use absolute positioning. */
+
+.fadeinout.ng-hide-add
+{
+/*     z-index = 0; */
+/*     opacity: 1; */
+     display: none; 
+}
+
+/* .blur { */
+/*     box-shadow: 0px 0px 20px 20px rgba(255,255,255,1); */
+/*     text-shadow: 0px 0px 10px rgba(51, 51, 51, 0.9); */
+/*     transform: scale(0.9); */
+/*     opacity: 0.6; */
+/*     -webkit-filter: blur(2px); */
+/*     -moz-filter: blur(2px); */
+/*     -o-filter: blur(2px); */
+/*     -ms-filter: blur(2px); */
+/*     filter: blur(2px); */
+/* } */
+
+
+/* .content-slider-fadeInOut.ng-enter  */
+/* { */
+/*   opacity: 0; */
+/*   -webkit-transition:all linear 1s; */
+/*   -moz-transition:all linear 1s; */
+/*   -o-transition:all linear 1s; */
+/*   transition: opacity 1s; */
+/* } */
+
+/* .content-slider-fadeInOut.ng-enter.ng-enter-active  */
+/* { */
+/*   opacity: 1.0; */
+/* } */
+
+
+
+.breathing 
+{
+    transform-origin: 50% 80%;
+    animation: imageBreath linear 5s;
+    animation-iteration-count: infinite;
+    -webkit-animation: imageBreath linear 5s;
+    -webkit-animation-iteration-count: infinite;
+}
+
+.breathing.ng-hide-add
+{
+    display: none;
+}
+
+@keyframes imageBreath 
+{ 
+    0% {transform: scale(1);}
+    50%{transform: scale(0.95);}
+    100%{transform: scale(1);}
+}
+
+@-moz-keyframes imageBreath 
+{ 
+    0% {-moz-transform: scale(1);}
+    50%{-moz-transform: scale(0.95);}
+    100%{-moz-transform: scale(1); }
+}
+
+@-webkit-keyframes imageBreath 
+{ 
+    0% {-webkit-transform: scale(1);}
+    50%{-webkit-transform: scale(0.95);}
+    100%{-webkit-transform: scale(1);}
+}
+
+@-ms-keyframes imageBreath 
+{ 
+    0% {-ms-transform: scale(1);}
+    50%{-ms-transform: scale(0.95); }
+    100%{-ms-transform: scale(1); }
+}
+
+
+.slowgrow 
+{
+    animation: imageSlowGrow linear 3s;
+    -webkit-animation: imageSlowGrow linear 3s;
+}
+
+.slowgrow.ng-hide-add
+{
+    display: none;
+}
+
+
+@keyframes imageSlowGrow 
+{ 
+    0% {transform: scale(0.05);}
+    15%{transform: scale(0.95);}
+    50%{transform: scale(0.99);}
+    100%{transform: scale(1);}
+}
+
+@-moz-keyframes imageSlowGrow 
+{ 
+    0% {-moz-transform: scale(0.05);}
+    15%{-moz-transform: scale(0.95);}
+    50%{-moz-transform: scale(0.99);}
+    100%{-moz-transform: scale(1); }
+}
+
+@-webkit-keyframes imageSlowGrow 
+{ 
+    0% {-webkit-transform: scale(0.05);}
+    15%{-webkit-transform: scale(0.95);}
+    50%{-webkit-transform: scale(0.99);}
+    100%{-webkit-transform: scale(1);}
+}
+
+@-ms-keyframes imageSlowGrow 
+{ 
+    0% {-ms-transform: scale(0.05);}
+    15%{-ms-transform: scale(0.95); }
+    50%{-ms-transform: scale(0.99);}
+    100%{-ms-transform: scale(1); }
+}

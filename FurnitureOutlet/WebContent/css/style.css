@@ -39,44 +39,6 @@ body
 }
 
 
-/* Animations.  Typically, a cross fade would have opacity:0 and opacity:1, but that deosn't work unless you use absolute positioning. */
-.repeat-slider
-{
-  -webkit-transition: opacity 0.25s ease-in-out;
-  -moz-transition: opacity 0.25s ease-in-out;
-  -o-transition: opacity 0.25s ease-in-out;
-  transition: opacity 0.25s ease-in-out;
-  max-height: 400px;
-}
-
-.repeat-slider.ng-hide-remove
-{
-	z-index = -1;
-	opacity: 0;
-}
-.repeat-slider.ng-hide-add
-{
-/*     z-index = 0; */
-/*     opacity: 1; */
-     display: none; 
-}
-
-
-.content-slider-fadeInOut.ng-enter 
-{
-  opacity: 0;
-  -webkit-transition:all linear 1s;
-  -moz-transition:all linear 1s;
-  -o-transition:all linear 1s;
-  transition: opacity 1s;
-}
-
-.content-slider-fadeInOut.ng-enter.ng-enter-active 
-{
-  opacity: 1.0;
-}
-
-
 div.imgContainer
 {
 	max-width: 96%;
@@ -121,6 +83,11 @@ img.responsive-shrinkHeight
 {
     max-height : 100%;
     width: auto;
+}
+
+.breathing 
+{
+  max-height: 400px;
 }
 
 div.responsive-shrinkWidth
@@ -213,19 +180,6 @@ div.fullWidthExpandHeight
 .thumbnail {margin-bottom:6px;}
 
     
-.blur {
-    box-shadow: 0px 0px 20px 20px rgba(255,255,255,1);
-    text-shadow: 0px 0px 10px rgba(51, 51, 51, 0.9);
-    transform: scale(0.9);
-    opacity: 0.6;
-    -webkit-filter: blur(2px);
-    -moz-filter: blur(2px);
-    -o-filter: blur(2px);
-    -ms-filter: blur(2px);
-    filter: blur(2px);
-}
-
-
 @media all and (min-width: 960px) 
 {
 .responsiveTextLarge

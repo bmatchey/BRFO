@@ -13,6 +13,7 @@ function SliderCtrl(logger, $timeout, $animate, $rootScope, $scope)
 	vm.sliderImages = [];
 	vm.srcFolder = 'assets';
 	vm.target = "#";
+	vm.sliderAnimation = 'fadeinout';
 
 
 	function sliderNext()
@@ -70,6 +71,18 @@ function SliderCtrl(logger, $timeout, $animate, $rootScope, $scope)
 	function handleSliderChanged(event, args)
 	{
 		vm.sliderImages = adjustImages(args);
+	}
+	
+	$scope.$on('settingsChanged', handleSettingsChanged);
+	function handleSettingsChanged(event, args)
+	{
+		for (var i = 0; i < args.length; i++)
+		{
+			if (args[i].Setting == 'SliderAnimation' && args[i].Site == siteName) 
+			{
+				vm.sliderAnimation = args[i].Value;
+			}
+		}
 	}
 		
 //	$scope.$on('menuPagesChanged', handlePagesChanged);
