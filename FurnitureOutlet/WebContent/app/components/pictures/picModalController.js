@@ -26,8 +26,9 @@ function modalDialog()
         controller: PicModalCtrl,
         controllerAs: 'picCtrl',
         link: linkFunc,
-        template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='picCtrl.hideModal()'></div><div class='ng-modal-dialog' ng-style='picCtrl.dialogStyle'><div class='ng-modal-close' ng-click='picCtrl.hideModal()'>X</div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
+        templateUrl: "app/components/pictures/picModalDialog.tpl.html"
 	    };
+    //template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='picCtrl.hideModal()'></div><div class='ng-modal-dialog' ng-style='picCtrl.dialogStyle'><div class='ng-modal-close' ng-click='picCtrl.hideModal()'>X</div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
 	
 	return directive;
 	  

@@ -6,6 +6,10 @@
   -moz-transition: opacity 0.25s ease-in-out;
   -o-transition: opacity 0.25s ease-in-out;
   transition: opacity 0.25s ease-in-out;
+}
+
+.fadeinout
+{
   max-height: 400px;
 }
 
@@ -62,6 +66,11 @@
     -webkit-animation-iteration-count: infinite;
 }
 
+.breathing 
+{
+  max-height: 400px;
+}
+
 .breathing.ng-hide-add
 {
     display: none;
@@ -105,6 +114,11 @@
 .slowgrow.ng-hide-add
 {
     display: none;
+}
+
+.slowgrow 
+{
+  max-height: 400px;
 }
 
 

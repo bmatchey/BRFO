@@ -106,6 +106,10 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, logger)
 			{
 				vm.maxShowcase = parseInt(args[i].Value);
 			}
+			else if (args[i].Setting == 'FaceBookAddress' && args[i].Site == siteName)
+			{
+				$rootScope.faceBookAddress = args[i].Value;
+			}			
 		}
 	}
 	

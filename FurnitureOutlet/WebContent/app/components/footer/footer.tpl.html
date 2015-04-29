@@ -63,6 +63,9 @@
 		<div class="footerFloatLeft gototop">
 			<a href="##topOfPage" rel="nofollow">Top</a>
 		</div>
+        <div ng-if="footerCtrl.faceBookAddress" class="footerFloatLeft">
+          See us on <a href="{{footerCtrl.faceBookAddress}}" target="_blank"> <img style="width: 24px; height: auto;" src="https://www.facebookbrand.com/img/assets/asset.f.logo.lg.png" />Facebook</a>
+        </div>
 		<div class="creds">
             <div ng-if="footerCtrl.domain == 'BRFO'">
                 © 2015 · Black River Furniture Outlet

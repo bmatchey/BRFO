@@ -109,9 +109,8 @@
 			                    <div class="imgContainer">                  
 			                        <div ng-controller="picModalCtrl as picModalCtrl">
 			                            <img class="responsive-shrinkWidth" ng-src="{{ item.Image }}" ng-click="picModalCtrl.toggleModal()" />
-			                            <modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto">
-			                            <img ng-src="{{ item.Image }}" width="100%" height="auto"
-			                                ng-click="picModalCtrl.toggleModal()" /> </modal-dialog>
+			                            <modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto" >
+			                            <img ng-src="{{ item.Image }}" ng-click="picModalCtrl.toggleModal()" /> </modal-dialog>
 			                        </div>
 			                    </div>                  
 			                    <div class="product_name">{{item.Product}}</div>
@@ -139,7 +138,7 @@
 		                                <div ng-controller="picModalCtrl as picModalCtrl">
 		                                    <img class="responsive-shrinkWidth" ng-src="{{ ad.Image }}" ng-click="picModalCtrl.toggleModal()" />
 		                                    <modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto">
-		                                    <img ng-src="{{ ad.Image }}" width="100%" height="auto"
+		                                    <img ng-src="{{ ad.Image }}" 
 		                                        ng-click="picModalCtrl.toggleModal()" /> </modal-dialog>
 		                                </div>
 		                            </div>
