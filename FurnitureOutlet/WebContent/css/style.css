@@ -150,7 +150,8 @@ div.fullWidthExpandHeight
 .mediumred
 {
     color: #ff0000;
-    font-size: 14px;
+    font-size: 24px;
+    font-weight: 500;
 }
 
 .columnedContainer

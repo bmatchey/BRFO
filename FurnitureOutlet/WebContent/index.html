@@ -34,6 +34,7 @@
     <script src="app/blocks/logger/logger.js"></script>
     
     <script src="app/core/core.module.js" type="text/javascript"></script>
+    <script src="app/core/settings.js"></script>
     <script src="app/components/header/headerController.js" type="text/javascript"></script>
     <script src="app/components/header/logoController.js" type="text/javascript"></script>
     <script src="app/components/footer/footerController.js" type="text/javascript"></script>
@@ -45,7 +46,7 @@
 
 </head>
 
-<body>
+<body ng-controller="settingsCtrl as settingsCtrl">
     <div id="topOfPage"></div>       
 
     <div id="divSiteBackground" ng-show="true" class="divWithBackground" ng-controller="googleDocsCtrl as googleCtrl" ng-style="{'background-image' : 'url(' + googleCtrl.backgroundPic + ')'}" >
@@ -167,10 +168,8 @@
         </div>
         
         <div id="divStoreHours" class="responsiveText">
-           Store Hours 
-           <br> Mon. - Fri. 8 a.m. - 7 p.m. 
-           <br> Sat. 8 a.m. - 6 p.m.
-           <br> Sun. Noon - 5 p.m.
+            Store Hours
+            <span ng-bind-html="settingsCtrl.storeHours" ></span>
         </div>
         
         <div id="divBottomFiller">

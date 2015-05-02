@@ -1,8 +1,7 @@
 angular.module('app.googleDocs', ['ngSanitize'])
 	.controller('googleDocsCtrl', GoogleDocsCtrl);
 
-
-function GoogleDocsCtrl($timeout, $rootScope, $scope, logger)
+function GoogleDocsCtrl($timeout, $rootScope, $scope, settings, logger)
 {
 	var vm = this;
 	vm.public_spreadsheet_url = "https://docs.google.com/spreadsheets/d/1eat5WwAwWoPhohkM_bBg-UFCyz3fE_Kt__3To5beSPg/pubhtml";	
@@ -108,7 +107,11 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, logger)
 			}
 			else if (args[i].Setting == 'FaceBookAddress' && args[i].Site == siteName)
 			{
-				$rootScope.faceBookAddress = args[i].Value;
+				settings.faceBookAddress = args[i].Value;
+			}			
+			else if (args[i].Setting == 'StoreHours' && args[i].Site == siteName)
+			{
+				settings.storeHours = args[i].Value;
 			}			
 		}
 	}

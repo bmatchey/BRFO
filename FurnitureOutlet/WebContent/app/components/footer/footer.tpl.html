@@ -1,5 +1,5 @@
 <div id="footerContainer">
-	<div id="wrap">
+	<div id="wrap" ng-controller="settingsCtrl as settingsCtrl">
 		<div class="footerFloatLeft">
 			<h2 style="text-align: center;">
 				<span style="color: #ff0000;">Call For Availability </span>
@@ -33,21 +33,12 @@
 				</span>
 			</h2>
 		</div>
-		<div class="footerFloatLeft">
-			<h3 style="text-align: center;">
-				<span style="color: #ff0000;">Store Hours </span>
-			</h3>
-			<h4 style="text-align: center;">
-				<span style="color: #ff0000;">Mon. - Fri. <br> 8 a.m. - 7 p.m.
-				</span>
-			</h4>
-			<h4 style="text-align: center;">
-				<span style="color: #ff0000;">Sat. 8 a.m. - 6 p.m.</span>
-			</h4>
-			<h4 style="text-align: center;">
-				<span style="color: #ff0000;">Sun. Noon - 5 p.m.</span>
-			</h4>
+		
+		<div class="footerFloatLeft centered mediumred" >
+            Store Hours
+            <span ng-bind-html="settingsCtrl.storeHours" ></span>
 		</div>
+		
 		<div class="footerFloatRight footerPadRight">
 		  <div ng-switch on="footerCtrl.domain">
 			<iframe ng-switch-default
@@ -59,12 +50,12 @@
 		  </div>
 		</div>
 	</div>
-	<div id="footerBottom">
+	<div id="footerBottom" ng-controller="settingsCtrl as settingsCtrl">
 		<div class="footerFloatLeft gototop">
 			<a href="##topOfPage" rel="nofollow">Top</a>
 		</div>
-        <div ng-if="footerCtrl.faceBookAddress" class="footerFloatLeft">
-          See us on <a href="{{footerCtrl.faceBookAddress}}" target="_blank"> <img style="width: 24px; height: auto;" src="https://www.facebookbrand.com/img/assets/asset.f.logo.lg.png" />Facebook</a>
+        <div ng-if="settingsCtrl.faceBookAddress" class="footerFloatLeft">
+          See us on <a href="{{settingsCtrl.faceBookAddress}}" target="_blank"> <img style="width: 24px; height: auto;" src="https://www.facebookbrand.com/img/assets/asset.f.logo.lg.png" />Facebook</a>
         </div>
 		<div class="creds">
             <div ng-if="footerCtrl.domain == 'BRFO'">
