@@ -13,7 +13,7 @@ body
 
 .largePicSlider
 {
-    background-image: url(../assets/picSliderBackground.png);  /* use a small image background if neither of the gradients are supported. */
+    background-image: url(../assets/slider/picSliderBackground.png);  /* use a small image background if neither of the gradients are supported. */
     background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#2664CD), to(#3D83E2));
     background-image: -moz-linear-gradient(19% 75% 90deg,#3D83E2, #2664CD);
     width: 100%;
@@ -45,6 +45,52 @@ div.imgContainer
 	height: auto; 
 	text-align: center; 
 	margin: 0 auto;
+}
+
+/* .sliderImage:hover  */
+/* { */
+/* 	opacity: 0.5;  */
+/* } */
+
+.arrow.prev 
+{
+  opacity: 0.2;
+  left: 20px;
+  background-image: url(../assets/slider/arrow_prev_999.png);
+  transition: 0.2s linear all;
+}
+.arrow.next 
+{
+  opacity: 0.2;
+  right: 20px;
+  background-image: url(../assets/slider/arrow_next_999.png);
+  transition: 0.2s linear all;
+}
+
+.arrow 
+{
+  position: absolute;
+  z-index: 1002;
+  display: block;
+  top: 50%;
+  margin-top: -35px;
+  width: 36px;
+  height: 71px;
+  outline: none;
+  cursor: pointer;
+  background: url(../assets/slider/blank.gif) no-repeat;
+}
+
+.arrow.prev:hover 
+{
+    opacity: 1;
+    background-image: url(../assets/slider/arrow_prev_fff.png);
+}
+
+.arrow.next:hover 
+{
+    opacity: 1;
+    background-image: url(../assets/slider/arrow_next_fff.png);
 }
 
 .shadowed

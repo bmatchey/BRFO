@@ -1,10 +1,13 @@
 <div class="picSliderContainer">
+
 	<div id="animatedPic" ng-repeat="pic in sliderCtrl.sliderImages track by $index">
           <div ng-if="sliderCtrl.sliderImages != null">
                 <div class="imgContainer">
+                    <a class="arrow prev" href="#" ng-click="sliderCtrl.sliderNext()"></a>
+                    <a class="arrow next" href="#" ng-click="sliderCtrl.sliderPrev()"></a>
+                    
                     <div ng-controller="picModalCtrl as picModalCtrl">
-                        
-                        <img ng-class="[responsive-shrinkWidth,rounded,sliderCtrl.sliderAnimation]" 
+                        <img class="responsive-shrinkWidth rounded sliderImage" ng-class="[sliderCtrl.sliderAnimation]" 
                           ng-show="sliderCtrl.sliderIndex == $index" title="{{pic.title}}"
                           ng-src="{{pic.src}}" ng-click="picModalCtrl.toggleModal()" />
                           

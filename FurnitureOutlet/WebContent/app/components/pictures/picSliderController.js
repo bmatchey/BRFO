@@ -8,6 +8,7 @@ function SliderCtrl(logger, $timeout, $animate, $rootScope, $scope)
 {
 	var vm = this;
 	vm.sliderNext = sliderNext;
+	vm.sliderPrev = sliderPrev;
 	vm.sliderIndex = 0;
 	vm.interval = 5000;
 	vm.sliderImages = [];
@@ -21,6 +22,14 @@ function SliderCtrl(logger, $timeout, $animate, $rootScope, $scope)
 		if (vm.sliderImages != null && vm.sliderImages.length > 0)
 		{
 			vm.sliderIndex = (vm.sliderIndex == vm.sliderImages.length - 1) ? 0 : vm.sliderIndex + 1;
+		}
+	}
+
+	function sliderPrev()
+	{
+		if (vm.sliderImages != null && vm.sliderImages.length > 0)
+		{
+			vm.sliderIndex = (vm.sliderIndex == 0) ? vm.sliderImages.length - 1 : vm.sliderIndex - 1;
 		}
 	}
 
