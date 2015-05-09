@@ -1,10 +1,10 @@
-<div class="picSliderContainer">
-
+<div class="picSliderContainer">   
+    <a class="sliderToggle" href="#" ng-click="sliderCtrl.toggleTimer()" >{{sliderCtrl.sliderOnOff}}</a>
 	<div id="animatedPic" ng-repeat="pic in sliderCtrl.sliderImages track by $index">
           <div ng-if="sliderCtrl.sliderImages != null">
                 <div class="imgContainer">
-                    <a class="arrow prev" href="#" ng-click="sliderCtrl.sliderNext()"></a>
-                    <a class="arrow next" href="#" ng-click="sliderCtrl.sliderPrev()"></a>
+                    <a class="arrow prev" href="#" ng-click="sliderCtrl.sliderNextClick()"></a>
+                    <a class="arrow next" href="#" ng-click="sliderCtrl.sliderPrevClick()"></a>
                     
                     <div ng-controller="picModalCtrl as picModalCtrl">
                         <img class="responsive-shrinkWidth rounded sliderImage" ng-class="[sliderCtrl.sliderAnimation]" 

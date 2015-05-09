@@ -6,11 +6,9 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, settings, logger)
 	var vm = this;
 	vm.public_spreadsheet_url = "https://docs.google.com/spreadsheets/d/1eat5WwAwWoPhohkM_bBg-UFCyz3fE_Kt__3To5beSPg/pubhtml";	
 	vm.storeCreated = storeCreated; 
-	vm.pagesCreated = pagesCreated; 
 	vm.sliderCreated = sliderCreated;
 	vm.adsCreated = adsCreated;
 	vm.settingsCreated = settingsCreated;
-	vm.pages = [{Page: 'Home', PageText: 'Loading content.  Please wait...  <img src="assets/spinner_small.gif" />' }];
 	vm.isloaded = false;
 	vm.ads = [];
 	vm.settings = [];
@@ -35,13 +33,6 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, settings, logger)
 
 	Tabletop.init({
 		key : vm.public_spreadsheet_url,
-		callback : vm.pagesCreated,
-		wanted : [ siteName + 'Pages' ],
-		simpleSheet : true
-	});
-
-	Tabletop.init({
-		key : vm.public_spreadsheet_url,
 		callback : vm.adsCreated,
 		wanted : [ 'Ads' ],
 		simpleSheet : true
@@ -57,14 +48,6 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, settings, logger)
     function storeCreated (data,tabletop) {
         $timeout(function() {
           vm.items = data;
-        });
-    }
-	
-    function pagesCreated (data,tabletop) {
-        $timeout(function() {
-          vm.pages = data;
-          $rootScope.$broadcast('menuPagesChanged', vm.pages);
-          vm.isloaded = true;
         });
     }
 	
@@ -84,6 +67,7 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, settings, logger)
     function settingsCreated (data,tabletop) {
         $timeout(function() {
           vm.settings = data;
+          vm.isloaded = true;  // Flag done on the last sheet requested.
           $rootScope.$broadcast('settingsChanged', vm.settings);
         });
     }

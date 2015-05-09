@@ -51,7 +51,7 @@ function HeaderCtrl($rootScope, $scope, $location, logger)
 		vm.menuItems = [];
 		for (var i = 0; i < args.length; i++)
 		{
-			if (args[i].Active == 'Yes')
+			if (args[i].Active.toUpperCase() == 'YES')
 			{
 				vm.menuItems.push({caption: args[i].Page});
 			}

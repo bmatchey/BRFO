@@ -93,6 +93,20 @@ div.imgContainer
     background-image: url(../assets/slider/arrow_next_fff.png);
 }
 
+.sliderToggle
+{
+	position: absolute;
+	text-align: center;
+	top: 0;
+	opacity: 0.2;
+	color: white;
+}
+
+.sliderToggle:hover
+{
+    opacity: 1.0;
+}
+
 .shadowed
 {
     -webkit-box-shadow: 0px 4px 30px 0px #555555;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
