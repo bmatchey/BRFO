@@ -27,6 +27,8 @@
         'app.picslider',
         'app.picModal',
         'app.youtube',
+        'app.ads',
+        'app.products',
         'app.googleDocs'
     ]);
 

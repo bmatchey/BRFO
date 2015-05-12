@@ -1,7 +1,7 @@
 angular.module('app.googleDocs', ['ngSanitize'])
 	.controller('googleDocsCtrl', GoogleDocsCtrl);
 
-function GoogleDocsCtrl($timeout, $rootScope, $scope, settings, logger)
+function GoogleDocsCtrl($timeout, $rootScope, $scope, settings, adService, logger)
 {
 	var vm = this;
 	vm.public_spreadsheet_url = "https://docs.google.com/spreadsheets/d/1eat5WwAwWoPhohkM_bBg-UFCyz3fE_Kt__3To5beSPg/pubhtml";	
@@ -10,7 +10,6 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, settings, logger)
 	vm.adsCreated = adsCreated;
 	vm.settingsCreated = settingsCreated;
 	vm.isloaded = false;
-	vm.ads = [];
 	vm.settings = [];
 	vm.siteName = siteName;
 	vm.backgroundPic = '';
@@ -59,7 +58,7 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, settings, logger)
 	
     function adsCreated (data,tabletop) {
         $timeout(function() {
-          vm.ads = data;
+          adService.handleAdsChanged(null, data);
           $rootScope.$broadcast('adsChanged', vm.ads);
         });
     }

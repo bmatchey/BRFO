@@ -1,0 +1,26 @@
+
+<div>
+	<div class="centered">{{adCtrl.Title}}</div>
+	
+	<div class="responsive-shrinkWidth">
+		<div data-ng-repeat="ad in adCtrl.ads" class="inline-bordered-300px" >
+			
+			<span class="product_title">{{ad.Title}}</span>
+			
+			<div class="youtubeContainer" ng-if="ad.YouTubeID">
+				<youtube videoid="{{ad.YouTubeID}}"></youtube>
+			</div>
+			
+			<div class="youtubeContainer" ng-if="ad.Image">
+				<div class="imgContainer">
+					<div ng-controller="picModalCtrl as picModalCtrl">
+						<img class="responsive-shrinkWidth" ng-src="{{ ad.Image }}"
+							ng-click="picModalCtrl.toggleModal()" />
+						<modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto">
+						<img ng-src="{{ ad.Image }}" ng-click="picModalCtrl.toggleModal()" /> </modal-dialog>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

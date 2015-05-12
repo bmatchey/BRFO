@@ -42,6 +42,8 @@
     <script src="app/components/pictures/picSliderController.js" type="text/javascript"></script>
     <script src="app/components/pictures/picModalController.js" type="text/javascript"></script>
     <script src="app/components/youtube/youtubeController.js" type="text/javascript"></script>
+    <script src="app/components/youtube/adsController.js" type="text/javascript"></script>
+    <script src="app/components/products/productsController.js" type="text/javascript"></script>
     <script src="app/components/google/googleDocsController.js" type="text/javascript"></script>    
 
 </head>
@@ -95,67 +97,24 @@
                 <div class="largePicSlider" ng-show="activeMenuItem == 'Home'">
                     <fade-in-slider interval="4000" images="sliderImages"></fade-in-slider>
                 </div>
-	            
-	            <div ng-switch on="activeMenuItem">
-	               <div ng-switch-when="Showcase">
-	                   <input ng-model="query" type="text" placeholder="Type here to search" style="padding-left: 150px;">
-	                   
-			            <div data-ng-template="table" class="responsive-shrinkWidth">
-			            
-			                <div class="inline-bordered-300px"
-			                    data-ng-repeat="item in googleCtrl.items | filter: Active='Yes' | filter: query | limitTo: googleCtrl.maxShowcase">
-			            
-			                    <span class="product_title">{{item.Title}}</span>
-			            
-			                    <div class="imgContainer">                  
-			                        <div ng-controller="picModalCtrl as picModalCtrl">
-			                            <img class="responsive-shrinkWidth" ng-src="{{ item.Image }}" ng-click="picModalCtrl.toggleModal()" />
-			                            <modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto" >
-			                            <img ng-src="{{ item.Image }}" ng-click="picModalCtrl.toggleModal()" /> </modal-dialog>
-			                        </div>
-			                    </div>                  
-			                    <div class="product_name">{{item.Product}}</div>
-			                    <div class="product_modelNbr" ng-if="item.ModelNbr">Model: {{item.ModelNbr}}</div>
-			                    <div class="product_description" ng-bind-html="item.Description"></div>
-			                    <div style="margin-top: 10px;">
-			                        <span class="product_price"> {{item.UnitPrice}}</span>
-			                    </div>
-			                    <div class="clearfix"></div>
-			                </div>
-			            </div>
-	               </div>
-                   
-                   <div ng-switch-when="Ads">
-		                <div class="centered">Our ads.</div>
-		
-		                <div class="responsive-shrinkWidth">
-		                    <div data-ng-repeat="ad in googleCtrl.ads | filter: Active='Yes'" class="inline-bordered-300px" ng-if="ad.Site.indexOf('BRFO') > -1">
-		                        <span class="product_title">{{ad.Title}}</span>
-		                        <div class="youtubeContainer" ng-if="ad.YouTubeID">
-		                            <youtube videoid="{{ad.YouTubeID}}"></youtube>
-		                        </div>
-		                        <div class="youtubeContainer" ng-if="ad.Image">
-		                            <div class="imgContainer">
-		                                <div ng-controller="picModalCtrl as picModalCtrl">
-		                                    <img class="responsive-shrinkWidth" ng-src="{{ ad.Image }}" ng-click="picModalCtrl.toggleModal()" />
-		                                    <modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto">
-		                                    <img ng-src="{{ ad.Image }}" 
-		                                        ng-click="picModalCtrl.toggleModal()" /> </modal-dialog>
-		                                </div>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </div>
-                   </div>
-                   
-                   <div ng-switch-when="About">
-                        <div ng-bind-html="googleCtrl.missionStatement" class="contentSection"></div>
-                        <brands ></brands>
-				        <footer domain='BRFO' ></footer>  
-                   </div>
-	            </div>
-	            
-	        </div>
+                
+				<div ng-switch on="activeMenuItem">
+					<div ng-switch-when="Showcase">
+					   <products-showcase products="{{googleCtrl.items}}" maxVisible="{{googleCtrl.maxShowcase}}" >
+					   </products-showcase>
+					</div>
+					
+					<div ng-switch-when="Ads">
+						<ads-container title="Our ads."> </ads-container>
+					</div>
+					
+					<div ng-switch-when="About">
+						<div ng-bind-html="googleCtrl.missionStatement" class="contentSection"></div>
+						<brands></brands>
+						<footer domain='BRFO'></footer>
+					</div>
+				</div>
+			</div>
         </div>
         
         <div id="divAddressContainer" >
