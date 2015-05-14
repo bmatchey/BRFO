@@ -22,7 +22,7 @@ function AdService(logger)
 		vm.ads = [];
 		for (var i = 0; i < args.length; i++)
 		{
-			if (args[i].Active.toUpperCase() == 'TEST' && (args[i].Site.indexOf(siteName) > -1))
+			if (args[i].Active.toUpperCase() == 'YES' && (args[i].Site.indexOf(siteName) > -1))
 			{
 				vm.ads.push(args[i]);
 			}

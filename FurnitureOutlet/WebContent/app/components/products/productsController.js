@@ -8,6 +8,20 @@ function ProductsCtrl()
 	vm.maxVisible = 25;
 	vm.products = [];
 	vm.categories = [];
+	vm.indexofCategory = indexofCategory;
+	
+	function indexofCategory(categories, category)
+	{
+		for(var idx = 0; idx < categories.length; idx++)
+		{
+			if (categories[idx] == category)
+			{
+				return idx;
+			}
+		}
+		
+		return -1;
+	}
 }
 
 function ProductsShowcaseDirective(logger)
@@ -28,24 +42,19 @@ function ProductsShowcaseDirective(logger)
 		productsCtrl.products = scope.$eval(attrs.products);
 		productsCtrl.maxVisible = attrs.maxvisible;
 		
-		for (var i=0; i < productsCtrl.products.length; i++)
+		for (var productIdx = 0; productIdx < productsCtrl.products.length; productIdx++)
 		{
-			if (productsCtrl.products[i].Active.toUpperCase() != 'YES')
+			if (productsCtrl.products[productIdx].Active.toUpperCase() != 'YES')
 				continue;
 			
-			var idx = -1;
-			for (var j = 0; j < productsCtrl.categories.length; j++)
+			var productCategories = productsCtrl.products[productIdx].Categories.split(',');
+			for(var productCategorIdx = 0; productCategorIdx < productCategories.length; productCategorIdx++)
 			{
-				if (productsCtrl.categories[j] == productsCtrl.products[i].Pages)
+				var idx = productsCtrl.indexofCategory(productsCtrl.categories, productCategories[productCategorIdx]);
+				if (idx == -1)
 				{
-					idx = j;
-					break;
+					productsCtrl.categories.push(productCategories[productCategorIdx]);
 				}
-			}
-			
-			if (idx == -1)
-			{
-				productsCtrl.categories.push(productsCtrl.products[i].Pages);
 			}
 		}
 	}
