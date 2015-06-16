@@ -11,12 +11,16 @@
 			<span class="product_title">{{item.Title}}</span>
 	
 			<div class="imgContainer">
-				<div ng-controller="picModalCtrl as picModalCtrl">
+				<div ng-controller="picModalCtrl as picModalCtrl" ng-if="item.isVideo == 'No'">
 					<img class="responsive-shrinkWidth" ng-src="{{ item.Image }}" ng-click="picModalCtrl.toggleModal()" />
 					<modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto">
 					   <img ng-src="{{ item.Image }}" ng-click="picModalCtrl.toggleModal()" /> 
 					</modal-dialog>
 				</div>
+
+	            <div class="youtubeContainer" ng-if="item.isVideo == 'Yes'">
+	                <youtube videoid="{{item.YouTubeID}}"></youtube>
+	            </div>
 			</div>
 	
 			<div class="product_name">{{item.Product}}</div>

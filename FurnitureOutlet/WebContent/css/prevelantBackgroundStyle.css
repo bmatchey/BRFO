@@ -129,7 +129,8 @@
 
 #divAddressContainer
 {
-    display: relative;
+    position: absolute;
+    right: 15%;
     color: #2664CD;
     font-size: 2.5vw;
     text-align: right;
@@ -137,7 +138,6 @@
     -webkit-transform: rotate(16deg); /* Chrome, Safari, Opera */
     transform: rotate(16deg);
     height: 100%;
-    margin-right: 20px;
 }
 
 .sendToBack

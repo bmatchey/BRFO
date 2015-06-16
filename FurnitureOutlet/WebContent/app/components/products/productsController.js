@@ -47,6 +47,17 @@ function ProductsShowcaseDirective(logger)
 			if (productsCtrl.products[productIdx].Active.toUpperCase() != 'YES')
 				continue;
 			
+			if (productsCtrl.products[productIdx].Image.toLowerCase().indexOf('youtu.be') > 0)
+			{
+				productsCtrl.products[productIdx].isVideo = "Yes";
+				productsCtrl.products[productIdx].YouTubeID = productsCtrl.products[productIdx].Image.substring('https://youtu.be/'.length);
+				logger.info('YouTubeID = ' + productsCtrl.products[productIdx].YouTubeID);
+			}
+			else
+			{
+				productsCtrl.products[productIdx].isVideo = "No";
+			}
+			
 			var productCategories = productsCtrl.products[productIdx].Categories.split(',');
 			for(var productCategorIdx = 0; productCategorIdx < productCategories.length; productCategorIdx++)
 			{
