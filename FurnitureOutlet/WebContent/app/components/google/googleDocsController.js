@@ -96,6 +96,14 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, settings, adService, logge
 			{
 				settings.storeHours = args[i].Value;
 			}			
+			else if (args[i].Setting == 'EmailAddress' && args[i].Site == siteName)
+			{
+				settings.emailAddress = args[i].Value;
+			}
+			else if (args[i].Setting == 'VideoTour' && args[i].Site == siteName)
+			{
+				settings.videoTourYouTubeID = args[i].Value;
+			}
 		}
 	}
 	

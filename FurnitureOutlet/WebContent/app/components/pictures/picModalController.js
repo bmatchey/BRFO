@@ -1,6 +1,8 @@
 angular.module('app.picModal', [])
 	.controller('picModalCtrl', PicModalCtrl)
-	.directive('modalDialog', modalDialog);
+	.controller('videoModalCtrl', VideoModalCtrl)
+	.directive('modalDialog', modalDialog)
+	.directive('modalVideo', modalVideo);
 
 function PicModalCtrl(logger)
 {
@@ -11,6 +13,34 @@ function PicModalCtrl(logger)
 	function toggleModal()
 	{
 		vm.modalShown = !vm.modalShown;
+	}
+}
+
+function VideoModalCtrl($rootScope, $scope, $compile, logger, settings)
+{
+	var vm = this;
+	vm.modalShown = false;
+	vm.toggleModal = toggleModal;
+	vm.stopAllVideos = stopAllVideos;
+	
+	function toggleModal()
+	{
+		vm.modalShown = !vm.modalShown;
+		
+		if (vm.modalShown)
+		{
+			var newElement = $compile( "<youtube autostart='true' videoid='" + settings.videoTourYouTubeID + "'></youtube>" )( $scope );
+			angular.element(document.getElementById('videoContainer')).append(newElement);
+		}
+		else
+		{
+			logger.info('close.');
+		}
+	}
+	
+	function stopAllVideos()
+	{
+		$rootScope.$broadcast('StopAllVideos', 'VideoModalCtrl');
 	}
 }
 
@@ -44,4 +74,42 @@ function modalDialog()
 	    	  scope.show = false;
 	      };
 	}
+}
+
+function modalVideo($rootScope)
+{
+	var directive = {
+		    restrict: 'E',
+		    scope: {
+		      show: '='
+		    },
+		    replace: true, // Replace with the template below
+		    transclude: true, // we want to insert custom content inside the directive
+	        controller: VideoModalCtrl,
+	        controllerAs: 'vidCtrl',
+	        link: linkFunc,
+	        templateUrl: "app/components/pictures/picModalVideo.tpl.html"
+		    };
+		
+		return directive;
+		  
+		function linkFunc(scope, element, attrs, vidCtrl)
+		{
+			vidCtrl.element = element;
+			vidCtrl.dialogStyle = {};
+		      if (attrs.width)
+		    	  vidCtrl.dialogStyle.width = attrs.width;
+		      if (attrs.height)
+		    	  vidCtrl.dialogStyle.height = attrs.height;
+		      vidCtrl.hideModal = function($rootScope)
+				{
+					scope.show = false;
+					vidCtrl.stopAllVideos();
+					var vidNode = document.getElementById('videoContainer');
+					while (vidNode && vidNode.firstChild)
+					{
+						vidNode.removeChild(vidNode.firstChild);
+					}
+				};
+		}
 }

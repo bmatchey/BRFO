@@ -1,0 +1,11 @@
+
+<div class='ng-modal' ng-show='show'>
+    <div class='ng-modal-overlay' ng-click='vidCtrl.hideModal()'></div>
+    <div class='ng-modal-dialog' ng-style='vidCtrl.dialogStyle'>
+        <div class='ng-modal-close' ng-click='vidCtrl.hideModal()'>X</div>
+        <div class='ng-modal-dialog-content' ng-transclude></div>
+        <div class="youtubeContainer" style="margin-top: 25px;">
+        <div id="videoContainer"></div>
+        </div>
+    </div>
+</div>

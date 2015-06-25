@@ -19,6 +19,7 @@ function YouTubeCtrl(logger, youtubeService, YT_event, $scope)
 	vm.element = null;
 	vm.cueVideo = cueVideo;
 	vm.getPlayer = getPlayer;
+	vm.autoStart = false;
 
 	//initial settings
 	vm.yt =
@@ -54,11 +55,13 @@ function YouTubeCtrl(logger, youtubeService, YT_event, $scope)
 	{
 		if (!vm.player)
 		{
+			var autoStart = (vm.autoStart) ? 1 : 0;
+			
 			vm.player = new YT.Player(vm.element.children()[0],
 					{
 						playerVars :
 						{
-							autoplay : 0,
+							autoplay : autoStart,
 							html5 : 1,
 							theme : "light",
 							modesbranding : 0,
@@ -74,6 +77,16 @@ function YouTubeCtrl(logger, youtubeService, YT_event, $scope)
 					});
 		}
 	}
+	
+	$scope.$on('StopAllVideos', handleStopAllVideos);
+	function handleStopAllVideos(event, args)
+	{
+		if (vm.player)
+		{
+			vm.player.stopVideo();
+		}
+	}
+	
 }
 
 function YouTubeService($q, $window, $timeout, logger)
@@ -87,7 +100,7 @@ function YouTubeService($q, $window, $timeout, logger)
     tag.src = 'https://www.youtube.com/iframe_api';
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-	
+	    
 	// Asynchronous loading of youtube iframe API.  Optional timeout - default is 15 seconds.
 	function youTubeIframeAPIReady(timeout)
 	{
@@ -109,7 +122,8 @@ function YouTubeService($q, $window, $timeout, logger)
 	        }, timeout || 15000);
 	    }
 	    return iframeAPILoadingDeferred.promise;	
-	}	
+	}
+	
 }
 
 function YouTubeDirective($window, YT_event, logger)
@@ -122,7 +136,8 @@ function YouTubeDirective($window, YT_event, logger)
 			{
 			height: "@",
 			width: "@",
-			videoid: "@"
+			videoid: "@",
+			autostart: "@"
 			},
 		controller : YouTubeCtrl,
 		controllerAs : 'youtubeCtrl',
@@ -137,5 +152,10 @@ function YouTubeDirective($window, YT_event, logger)
 		youtubeCtrl.yt.width = scope.width;
 		youtubeCtrl.yt.videoid = scope.videoid;
 		youtubeCtrl.element = element;
+		logger.info('Video autostart = ' + attrs.autostart);
+		if (attrs.autostart == 'true')
+		{
+			youtubeCtrl.autoStart = true;
+		}
 	}
 }

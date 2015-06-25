@@ -98,6 +98,12 @@
                     <fade-in-slider interval="4000" images="sliderImages"></fade-in-slider>
                 </div>
                 
+                <div ng-controller="videoModalCtrl as videoModalCtrl" style="position: absolute; right: 20px; font-size: x-large;">
+                    <a href="#" ng-click="videoModalCtrl.toggleModal()"><span style="color: orange; background-color: white;"> Video tour</span></a>                   
+                    <modal-video show="videoModalCtrl.modalShown" width="95%" height="auto" >
+                    </modal-video>
+                </div>
+                
 				<div ng-switch on="activeMenuItem">
 					<div ng-switch-when="Showcase">
 					   <products-showcase products="{{googleCtrl.items}}" maxVisible="{{googleCtrl.maxShowcase}}" >
@@ -130,7 +136,11 @@
             Store Hours
             <span ng-bind-html="settingsCtrl.storeHours" ></span>
         </div>
-        
+                
+        <div id="divEmailAddress" class="responsiveText centered">
+            {{settingsCtrl.emailAddress}}
+        </div>
+                
         <div id="divBottomFiller">
         </div>
     </div>
