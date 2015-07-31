@@ -27,7 +27,7 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, $http, settings, adService
 		$http.get(jsonUrl)
 	       .then(function(workbook){
 	    	   vm.settingsCreated(workbook.data.Settings, null);
-	    	   vm.storeCreated(workbook.data.BRFO, null);
+	    	   vm.storeCreated(workbook.data[siteName], null);
 	    	   vm.sliderCreated(workbook.data.SliderPics, null);
 	    	   vm.adsCreated(workbook.data.Ads, null);
 	        });
