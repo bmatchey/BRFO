@@ -1,7 +1,7 @@
 angular.module('app.googleDocs', ['ngSanitize'])
 	.controller('googleDocsCtrl', GoogleDocsCtrl);
 
-function GoogleDocsCtrl($timeout, $rootScope, $scope, settings, adService, logger)
+function GoogleDocsCtrl($timeout, $rootScope, $scope, $http, settings, adService, logger)
 {
 	var vm = this;
 	vm.public_spreadsheet_url = "https://docs.google.com/spreadsheets/d/1eat5WwAwWoPhohkM_bBg-UFCyz3fE_Kt__3To5beSPg/pubhtml";	
@@ -9,40 +9,61 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, settings, adService, logge
 	vm.sliderCreated = sliderCreated;
 	vm.adsCreated = adsCreated;
 	vm.settingsCreated = settingsCreated;
+	vm.loadJSON = loadJSON;
+	vm.loadSpreadsheet = loadSpreadsheet;
 	vm.isloaded = false;
 	vm.settings = [];
 	vm.siteName = siteName;
 	vm.backgroundPic = '';
 	vm.missionStatement = '';
 	vm.maxShowcase = 16;
+	
+	// Load our local JSON copy first, then load the Google spreadsheet for the most recent data.  If Google fails, we are still running.
+	loadJSON("app/core/BlackRiverOutlets.json");
+	loadSpreadsheet(vm.public_spreadsheet_url);
 
-	Tabletop.init({
-		key : vm.public_spreadsheet_url,
-		callback : vm.storeCreated,
-		wanted : [ siteName ],
-		simpleSheet : true
-	});
+	function loadJSON(jsonUrl)
+	{
+		$http.get(jsonUrl)
+	       .then(function(workbook){
+	    	   vm.settingsCreated(workbook.data.Settings, null);
+	    	   vm.storeCreated(workbook.data.BRFO, null);
+	    	   vm.sliderCreated(workbook.data.SliderPics, null);
+	    	   vm.adsCreated(workbook.data.Ads, null);
+	        });
+	}
+	
+	function loadSpreadsheet(spreadsheeturl)
+	{
+		Tabletop.init({
+			key : spreadsheeturl,
+			callback : vm.settingsCreated,
+			wanted : [ 'Settings' ],
+			simpleSheet : true
+		});
 
-	Tabletop.init({
-		key : vm.public_spreadsheet_url,
-		callback : vm.sliderCreated,
-		wanted : [ 'SliderPics' ],
-		simpleSheet : true
-	});
+		Tabletop.init({
+			key : spreadsheeturl,
+			callback : vm.storeCreated,
+			wanted : [ siteName ],
+			simpleSheet : true
+		});
+	
+		Tabletop.init({
+			key : spreadsheeturl,
+			callback : vm.sliderCreated,
+			wanted : [ 'SliderPics' ],
+			simpleSheet : true
+		});
+	
+		Tabletop.init({
+			key : spreadsheeturl,
+			callback : vm.adsCreated,
+			wanted : [ 'Ads' ],
+			simpleSheet : true
+		});
 
-	Tabletop.init({
-		key : vm.public_spreadsheet_url,
-		callback : vm.adsCreated,
-		wanted : [ 'Ads' ],
-		simpleSheet : true
-	});
-
-	Tabletop.init({
-		key : vm.public_spreadsheet_url,
-		callback : vm.settingsCreated,
-		wanted : [ 'Settings' ],
-		simpleSheet : true
-	});
+	}
 	
     function storeCreated (data,tabletop) {
         $timeout(function() {
@@ -56,18 +77,18 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, settings, adService, logge
         });
     }
 	
-    function adsCreated (data,tabletop) {
-        $timeout(function() {
-          adService.handleAdsChanged(null, data);
-          $rootScope.$broadcast('adsChanged', vm.ads);
-        });
-    }
-	
     function settingsCreated (data,tabletop) {
         $timeout(function() {
           vm.settings = data;
-          vm.isloaded = true;  // Flag done on the last sheet requested.
           $rootScope.$broadcast('settingsChanged', vm.settings);
+        });
+    }
+	
+    function adsCreated (data,tabletop) {
+        $timeout(function() {
+          adService.handleAdsChanged(null, data);
+          vm.isloaded = true;  // Flag done on the last sheet requested.
+          $rootScope.$broadcast('adsChanged', vm.ads);
         });
     }
         

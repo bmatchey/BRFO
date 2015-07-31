@@ -91,7 +91,7 @@ function SliderCtrl(logger, $timeout, $animate, $rootScope, $scope)
 		var images = [];
 		for (var i = 0; i < args.length; i++)
 		{
-			if ((args[i].src != null) && (args[i].Active.toUpperCase() == 'YES' || args[i].Active == null) && (args[i].Site == null || args[i].Site.indexOf(siteName) > -1)) 
+			if ((args[i].src != null) && (args[i].Active != null) && (args[i].Active.toUpperCase() == 'YES') && (args[i].Site == null || args[i].Site.indexOf(siteName) > -1)) 
 			{
 				var src;
 				if (args[i].src.indexOf('http') != 0)
