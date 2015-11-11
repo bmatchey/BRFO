@@ -3,7 +3,7 @@ angular.module('app.header', [])
 	.directive('header', HeaderDirective)
 	.directive('menulist', MenuListDirective);
 
-function HeaderCtrl($rootScope, $scope, $location, logger)
+function HeaderCtrl($rootScope, $scope, $location, utility, logger)
 {
 	var vm = this;
 	vm.title = (siteName == "BRFO") ? "Black River Furniture Outlet" : "Black River Surplus Outlet";
@@ -12,13 +12,14 @@ function HeaderCtrl($rootScope, $scope, $location, logger)
 	vm.indexOfCaption = indexOfCaption;
 	vm.menuItemClicked = menuItemClicked;
 	vm.addStaticMenuItems = addStaticMenuItems;
-	vm.getParameterByName = getParameterByName;
-	vm.handlePagesChanged = handlePagesChanged;
+	vm.handleChangeMenuActive = handleChangeMenuActive;
+	vm.handleProductsChanged = handleProductsChanged;
 	
 //	menu items.  if target is specified, the menu will route to there.  Otherwise, it only sets rootScope.activeMenuItem.  
 	vm.menuItems = [];
 	vm.staticMenuItems = [];
-	             	
+
+	
 	function indexOfCaption(caption)
 	{
 		for(var i=0; i<vm.menuItems.length; i++)
@@ -39,34 +40,20 @@ function HeaderCtrl($rootScope, $scope, $location, logger)
 			window.location = item.target;
 		}
 		else
-		{
+		{			
 			vm.activeIndex = indexOfCaption(item.caption);
 			$rootScope.activeMenuItem = item.caption;
 			$rootScope.$broadcast('menuActiveChanged', item);
 		}
 	}
 	
-	function handlePagesChanged(event, args)
+	function handleChangeMenuActive(event, pageName)
 	{
-		vm.menuItems = [];
-		for (var i = 0; i < args.length; i++)
+		var pageIdx = indexOfCaption(pageName);
+		if (pageIdx > -1)
 		{
-			if (args[i].Active.toUpperCase() == 'YES')
-			{
-				vm.menuItems.push({caption: args[i].Page});
-			}
-		}
-		addStaticMenuItems();
-
-		var startPage = getParameterByName('page');
-		if (startPage.length > 0)
-		{
-			var pageIdx = indexOfCaption(startPage);
-			if (pageIdx > -1)
-			{
-				vm.activeIndex = pageIdx; 
-				$rootScope.activeMenuItem = startPage;
-			}
+			vm.activeIndex = pageIdx; 
+			$rootScope.activeMenuItem = pageName;
 		}
 	}
 	
@@ -81,14 +68,19 @@ function HeaderCtrl($rootScope, $scope, $location, logger)
 		}
 	}
 	
-	function getParameterByName(name) 
+	function handleProductsChanged(event, args)
 	{
-	    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-	    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-	        results = regex.exec(location.search);
-	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+		vm.menuItems = [];
+		for (var i = 0; i < args.length; i++)
+		{
+			if (args[i].Active.toUpperCase() == 'YES')
+			{
+				vm.menuItems.push({caption: args[i].Page});
+			}
+		}
+		addStaticMenuItems();
 	}
-	
+		
 }
 
 function HeaderDirective($rootScope, $parse, logger)
@@ -124,7 +116,8 @@ function HeaderDirective($rootScope, $parse, logger)
 			headerCtrl.addStaticMenuItems();
 		}
 
-		scope.$on('menuPagesChanged', headerCtrl.handlePagesChanged);
+		scope.$on('productsChanged', headerCtrl.handleProductsChanged);
+		scope.$on('changeMenuActive', headerCtrl.handleChangeMenuActive);
 	}
 }
 
@@ -138,7 +131,7 @@ function MenuListDirective($rootScope, $parse, logger)
         controllerAs: 'menuCtrl',
         link: linkFunc
 	};
-	
+
 	return directive;
 	
 	function linkFunc(scope, element, attrs, menuCtrl)
@@ -158,5 +151,7 @@ function MenuListDirective($rootScope, $parse, logger)
 			menuCtrl.staticMenuItems = scope.$eval(element.attr('staticMenuItems'));
 			menuCtrl.addStaticMenuItems();
 		}
+		
+		scope.$on('changeMenuActive', menuCtrl.handleChangeMenuActive);
 	}
 }

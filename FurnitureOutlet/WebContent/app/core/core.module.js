@@ -9,7 +9,7 @@
         /*
          * Our reusable cross app code modules
          */
-        'blocks.exception', 'blocks.logger' //, 'ui.bootstrap'
+        'blocks.exception', 'blocks.logger', 'blocks.base64', 'blocks.utility' //, 'ui.bootstrap'
         /*
          * 3rd Party modules
          */

@@ -1,14 +1,18 @@
 angular.module('app.products', [])
 	.controller('productsCtrl', ProductsCtrl)
-	.directive('productsShowcase', ProductsShowcaseDirective);
+	.directive('productsShowcase', ProductsShowcaseDirective)
+	.directive('productDetail', ProductDetailDirective);
 
-function ProductsCtrl()
+function ProductsCtrl($rootScope, logger)
 {
 	var vm = this;
 	vm.maxVisible = 25;
 	vm.products = [];
 	vm.categories = [];
 	vm.indexofCategory = indexofCategory;
+	vm.showDetail = showDetail;
+	vm.handleShowItemDetail = handleShowItemDetail;
+	vm.detailItem = null;
 	
 	function indexofCategory(categories, category)
 	{
@@ -21,6 +25,26 @@ function ProductsCtrl()
 		}
 		
 		return -1;
+	}
+	
+	function showDetail(item)
+	{
+		$rootScope.detailItem = item;
+		$rootScope.activeMenuItem = 'ItemDetail';
+	}
+	
+	function handleShowItemDetail(event, args)
+	{
+		for(var idx = 0; idx < vm.products.length; idx++)
+		{
+			if (vm.products[idx].Product == args.productName)
+			{
+				if (args.productModel == null ||args.productModel == vm.products[idx].ModelNbr)
+				{
+					showDetail(vm.products[idx]);
+				}
+			}
+		}
 	}
 }
 
@@ -68,6 +92,27 @@ function ProductsShowcaseDirective(logger)
 				}
 			}
 		}
+
+		scope.$on('showItemDetail', productsCtrl.handleShowItemDetail);
+	}
+}
+
+function ProductDetailDirective($rootScope, logger)
+{
+	var directive =
+	{
+		restrict : 'E',
+		templateUrl: "app/components/products/productDetail.tpl.html",
+		controller : ProductsCtrl,
+		controllerAs : 'productsCtrl',
+		link : linkFunc
+	};
+
+	return directive;
+
+	function linkFunc(scope, element, attrs, productsCtrl)
+	{
+		productsCtrl.detailItem = $rootScope.detailItem;
 	}
 }
 

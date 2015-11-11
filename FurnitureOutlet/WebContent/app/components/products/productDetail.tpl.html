@@ -1,0 +1,32 @@
+<div class="contentSection">
+    <div class="product_title centered">{{detailItem.Title}}</div>
+
+    <div >
+
+
+        <div class="imgContainer">
+            <div ng-controller="picModalCtrl as picModalCtrl" ng-if="detailItem.isVideo == 'No'">
+                <img class="responsive-shrinkWidth" ng-src="{{ detailItem.Image }}" ng-click="picModalCtrl.toggleModal()" />
+                <modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto">
+                   <img ng-src="{{ detailItem.Image }}" ng-click="picModalCtrl.toggleModal()" /> 
+                </modal-dialog>
+            </div>
+
+            <div class="youtubeContainer" ng-if="detailItem.isVideo == 'Yes'">
+                <youtube videoid="{{detailItem.YouTubeID}}"></youtube>
+            </div>
+        </div>
+        
+        <div class="product_name">{{detailItem.Product}}</div>
+        
+        <div class="product_modelNbr" ng-if="detailItem.ModelNbr">Model: {{detailItem.ModelNbr}}</div>
+        
+        <div class="product_description" ng-bind-html="detailItem.Description"></div>
+        
+        <div style="margin-top: 10px;">
+            <span class="product_price"> {{detailItem.UnitPrice}}</span>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    
+</div>

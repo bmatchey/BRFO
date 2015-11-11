@@ -22,17 +22,20 @@
 	                <youtube videoid="{{item.YouTubeID}}"></youtube>
 	            </div>
 			</div>
-	
-			<div class="product_name">{{item.Product}}</div>
-			
-			<div class="product_modelNbr" ng-if="item.ModelNbr">Model: {{item.ModelNbr}}</div>
-			
-			<div class="product_description" ng-bind-html="item.Description"></div>
-			
-			<div style="margin-top: 10px;">
-				<span class="product_price"> {{item.UnitPrice}}</span>
+            
+            <div ng-click="productsCtrl.showDetail(item)" >            
+				<div class="product_name">{{item.Product}}</div>
+				
+				<div class="product_modelNbr" ng-if="item.ModelNbr">Model: {{item.ModelNbr}}</div>
+				
+				<div class="product_description" ng-bind-html="item.Description"></div>
+				
+				<div style="margin-top: 10px;">
+					<span class="product_price"> {{item.UnitPrice}}</span>
+				</div>
+				<div class="clearfix"></div>
 			</div>
-			<div class="clearfix"></div>
 		</div>
+		
 	</div>
 </div>
