@@ -4,7 +4,7 @@ angular.module('app.picslider', ['ngAnimate'])
 	.factory('changePicsService', ChangePicsService);
 
 
-function SliderCtrl(logger, $timeout, $animate, $rootScope, $scope)
+function SliderCtrl(logger, $timeout, $animate, $rootScope, $scope, base64)
 {
 	var vm = this;
 	vm.sliderNext = sliderNext;
@@ -12,6 +12,7 @@ function SliderCtrl(logger, $timeout, $animate, $rootScope, $scope)
 	vm.sliderNextClick = sliderNextClick;
 	vm.sliderPrevClick = sliderPrevClick;
 	vm.toggleTimer = toggleTimer;
+	vm.showItemDetail = showItemDetail;
 	vm.sliderIndex = 0;
 	vm.interval = 5000;
 	vm.sliderImages = [];
@@ -47,6 +48,28 @@ function SliderCtrl(logger, $timeout, $animate, $rootScope, $scope)
 		if (vm.sliderImages != null && vm.sliderImages.length > 0)
 		{
 			vm.sliderIndex = (vm.sliderIndex == 0) ? vm.sliderImages.length - 1 : vm.sliderIndex - 1;
+		}
+	}
+	
+	function showItemDetail()
+	{
+		if (vm.sliderImages != null && vm.sliderImages.length > vm.sliderIndex)
+		{
+			$rootScope.$broadcast('changeMenuActive', 'Showcase');
+
+			var itemId = base64.decode(vm.sliderImages[vm.sliderIndex].itemId).split(':');
+			var productName = itemId[0];
+			var productModel = itemId[1];
+			
+			$timeout(function()
+					{
+		    			$rootScope.$broadcast('showItemDetail', 
+		    					{ 
+		    						productName: productName,
+		    						productModel: productModel
+		    					});
+					},
+					500);
 		}
 	}
 	
@@ -86,24 +109,56 @@ function SliderCtrl(logger, $timeout, $animate, $rootScope, $scope)
 	startTimer();
 
 	
+//	function adjustImages(args)
+//	{
+//		var images = [];
+//		for (var i = 0; i < args.length; i++)
+//		{
+//			if ((args[i].src != null) && (args[i].Active != null) && (args[i].Active.toUpperCase() == 'YES') && (args[i].Site == null || args[i].Site.indexOf(siteName) > -1)) 
+//			{
+//				var src;
+//				if (args[i].src.indexOf('http') != 0)
+//				{
+//					src  = vm.srcFolder + '/' + args[i].src;					
+//				}
+//				else
+//				{
+//					src = args[i].src;
+//				}
+//				
+//				var itemId = base64.encode(args[i].Product) + ':' + base64.encode(args[i].ModelNbr); 
+//				
+//				images.push({src: src, title: args[i].title, target: args[i].target, itemId: itemId});
+//				logger.info('Product = ' + JSON.stringify(args[i].Product) + '  ' + itemId);
+//			}
+//		}
+//		
+//		return images;
+//	}
+	
 	function adjustImages(args)
 	{
 		var images = [];
 		for (var i = 0; i < args.length; i++)
 		{
-			if ((args[i].src != null) && (args[i].Active != null) && (args[i].Active.toUpperCase() == 'YES') && (args[i].Site == null || args[i].Site.indexOf(siteName) > -1)) 
+			if ((args[i].Image != null) 
+					&& (args[i].Active != null) && (args[i].Active.toUpperCase() == 'YES')
+					&& (args[i].OnSlider != null) && (args[i].OnSlider.toUpperCase() == 'YES')) 
 			{
 				var src;
-				if (args[i].src.indexOf('http') != 0)
+				if (args[i].Image.indexOf('http') != 0)
 				{
-					src  = vm.srcFolder + '/' + args[i].src;					
+					src  = vm.srcFolder + '/' + args[i].Image;					
 				}
 				else
 				{
-					src = args[i].src;
+					src = args[i].Image;
 				}
 				
-				images.push({src: src, title: args[i].title, target: args[i].target});
+				var itemId = base64.encode(args[i].Product + ':' + args[i].ModelNbr); 
+				
+				images.push({src: src, title: args[i].title, target: args[i].target, itemId: itemId});
+				//logger.info('Product = ' + JSON.stringify(args[i].Product) + '  ' + itemId);
 			}
 		}
 		
@@ -116,8 +171,13 @@ function SliderCtrl(logger, $timeout, $animate, $rootScope, $scope)
 		$scope.sliderImages = changePicsService.images;
 	}
 	
-	$scope.$on('sliderChanged', handleSliderChanged);
-	function handleSliderChanged(event, args)
+//	$scope.$on('sliderChanged', handleSliderChanged);
+//	function handleSliderChanged(event, args)
+//	{
+//		vm.sliderImages = adjustImages(args);
+//	}
+	$scope.$on('productsChanged', handleProductsChanged);
+	function handleProductsChanged(event, args)
 	{
 		vm.sliderImages = adjustImages(args);
 	}

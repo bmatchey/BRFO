@@ -3,7 +3,7 @@ angular.module('app.products', [])
 	.directive('productsShowcase', ProductsShowcaseDirective)
 	.directive('productDetail', ProductDetailDirective);
 
-function ProductsCtrl($rootScope, logger)
+function ProductsCtrl($rootScope, utility, logger)
 {
 	var vm = this;
 	vm.maxVisible = 25;
@@ -12,7 +12,10 @@ function ProductsCtrl($rootScope, logger)
 	vm.indexofCategory = indexofCategory;
 	vm.showDetail = showDetail;
 	vm.handleShowItemDetail = handleShowItemDetail;
+	vm.returnToCaller = returnToCaller;
 	vm.detailItem = null;
+	vm.callingPage = null;
+	vm.lastOffset = 0;
 	
 	function indexofCategory(categories, category)
 	{
@@ -29,22 +32,35 @@ function ProductsCtrl($rootScope, logger)
 	
 	function showDetail(item)
 	{
+		vm.callingPage = $rootScope.activeMenuItem;
 		$rootScope.detailItem = item;
 		$rootScope.activeMenuItem = 'ItemDetail';
+		
+		vm.lastOffset = $(window.pageYOffset);
+		var topOfMainMenu = 125; // TODO: get actual.
+		utility.scrollMainWindowAnimated(topOfMainMenu);
 	}
 	
 	function handleShowItemDetail(event, args)
 	{
+		logger.info('ShowItemDetail ' + args.productName);
+		
 		for(var idx = 0; idx < vm.products.length; idx++)
 		{
 			if (vm.products[idx].Product == args.productName)
 			{
-				if (args.productModel == null ||args.productModel == vm.products[idx].ModelNbr)
+				if (args.productModel == null || args.productModel == vm.products[idx].ModelNbr)
 				{
 					showDetail(vm.products[idx]);
 				}
 			}
 		}
+	}
+	
+	function returnToCaller()
+	{
+		$rootScope.$broadcast('changeMenuActive', 'Showcase');
+		// utility.scrollMainWindowAnimated(vm.lastOffset); // TODO: lastOffset is set in the wrong scope.
 	}
 }
 
@@ -102,17 +118,19 @@ function ProductDetailDirective($rootScope, logger)
 	var directive =
 	{
 		restrict : 'E',
+	    replace: true, // Replace with the template.
+	    transclude: true, // we want to insert custom content inside the directive
 		templateUrl: "app/components/products/productDetail.tpl.html",
 		controller : ProductsCtrl,
-		controllerAs : 'productsCtrl',
+		controllerAs : 'prodCtrl',
 		link : linkFunc
 	};
 
 	return directive;
 
-	function linkFunc(scope, element, attrs, productsCtrl)
+	function linkFunc(scope, element, attrs, prodCtrl)
 	{
-		productsCtrl.detailItem = $rootScope.detailItem;
+		prodCtrl.detailItem = $rootScope.detailItem;
 	}
 }
 

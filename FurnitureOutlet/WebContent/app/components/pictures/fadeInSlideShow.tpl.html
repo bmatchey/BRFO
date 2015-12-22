@@ -9,12 +9,12 @@
                     <div ng-controller="picModalCtrl as picModalCtrl">
                         <img class="responsive-shrinkWidth rounded sliderImage" ng-class="[sliderCtrl.sliderAnimation]" 
                           ng-show="sliderCtrl.sliderIndex == $index" title="{{pic.title}}"
-                          ng-src="{{pic.src}}" ng-click="picModalCtrl.toggleModal()" />
+                          ng-src="{{pic.src}}" ng-click="sliderCtrl.showItemDetail()" />
                           
                         <modal-dialog show="picModalCtrl.modalShown" width="95%" height="auto">
-                        
-                        <img ng-src="{{pic.src}}" 
-                            ng-click="picModalCtrl.toggleModal()" /> </modal-dialog>
+	                        <img ng-src="{{pic.src}}" 
+	                            ng-click="picModalCtrl.toggleModal()" /> 
+                        </modal-dialog>
                     </div>
                 </div>
           </div>

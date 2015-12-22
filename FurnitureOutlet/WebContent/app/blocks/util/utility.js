@@ -11,9 +11,22 @@
     	    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
     	}
     	
+    	
+    	function scrollMainWindowAnimated(offset)
+    	{
+    		$({myScrollTop:window.pageYOffset}).animate({myScrollTop:offset}, {
+    			  duration: 600,
+    			  easing: 'swing',
+    			  step: function(val) {
+    			    window.scrollTo(0, val);
+    			  }
+    			});
+    	}
+    	
 
         return {
-        	getParameterByName: getParameterByName
+        	getParameterByName: getParameterByName,
+        	scrollMainWindowAnimated: scrollMainWindowAnimated
         };
 
     })());

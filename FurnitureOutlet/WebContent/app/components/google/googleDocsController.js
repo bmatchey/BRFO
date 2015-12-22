@@ -6,7 +6,7 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, $http, settings, base64, u
 	var vm = this;
 	vm.public_spreadsheet_url = "https://docs.google.com/spreadsheets/d/1eat5WwAwWoPhohkM_bBg-UFCyz3fE_Kt__3To5beSPg/pubhtml";	
 	vm.storeCreated = storeCreated; 
-	vm.sliderCreated = sliderCreated;
+	//vm.sliderCreated = sliderCreated;
 	vm.adsCreated = adsCreated;
 	vm.settingsCreated = settingsCreated;
 	vm.loadJSON = loadJSON;
@@ -28,7 +28,7 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, $http, settings, base64, u
 	       .then(function(workbook){
 	    	   vm.settingsCreated(workbook.data.Settings, null);
 	    	   vm.storeCreated(workbook.data[siteName], null);
-	    	   vm.sliderCreated(workbook.data.SliderPics, null); 
+	    	   //vm.sliderCreated(workbook.data.SliderPics, null); 
 	    	   vm.adsCreated(workbook.data.Ads, null);
 	        });
 	}
@@ -49,12 +49,12 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, $http, settings, base64, u
 			simpleSheet : true
 		});
 	
-		Tabletop.init({
-			key : spreadsheeturl,
-			callback : vm.sliderCreated,
-			wanted : [ 'SliderPics' ],
-			simpleSheet : true
-		});
+//		Tabletop.init({
+//			key : spreadsheeturl,
+//			callback : vm.sliderCreated,
+//			wanted : [ 'SliderPics' ],
+//			simpleSheet : true
+//		});
 	
 		Tabletop.init({
 			key : spreadsheeturl,
@@ -72,11 +72,11 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, $http, settings, base64, u
         });
     }
 	
-    function sliderCreated (data,tabletop) {
-        $timeout(function(){
-        	$rootScope.$broadcast('sliderChanged', data);
-        });
-    }
+//    function sliderCreated (data,tabletop) {
+//        $timeout(function(){
+//        	$rootScope.$broadcast('sliderChanged', data);
+//        });
+//    }
 	
     function settingsCreated (data,tabletop) {
         $timeout(function() {

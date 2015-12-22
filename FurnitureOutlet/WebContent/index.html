@@ -101,7 +101,9 @@
                     <fade-in-slider interval="4000" images="sliderImages"></fade-in-slider>
                 </div>
                 
-                <div ng-controller="videoModalCtrl as videoModalCtrl" style="position: absolute; right: 20px; font-size: x-large;">
+                <div ng-controller="videoModalCtrl as videoModalCtrl" 
+                    style="position: absolute; right: 20px; font-size: x-large;"
+                    ng-if="activeMenuItem == 'Home'">
                     <a href="#" ng-click="videoModalCtrl.toggleModal()"><span style="color: orange; background-color: white;"> Video tour</span></a>                   
                     <modal-video show="videoModalCtrl.modalShown" width="95%" height="auto" >
                     </modal-video>

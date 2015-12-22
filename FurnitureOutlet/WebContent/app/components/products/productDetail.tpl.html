@@ -1,8 +1,13 @@
 <div class="contentSection">
+    <div class="ng-modal-close" style="position: relative;" ng-click="prodCtrl.returnToCaller()">X</div>
+
     <div class="product_title centered">{{detailItem.Title}}</div>
 
     <div >
-
+    
+<!-- Social media tags: https://moz.com/blog/meta-data-templates-123 -->
+<!-- Jason Watmore: http://jasonwatmore.com/post/2014/08/01/AngularJS-directives-for-social-sharing-buttons-Facebook-Like-GooglePlus-Twitter-and-Pinterest.aspx -->
+<!-- 720kb angular-socialshare: https://github.com/720kb/angular-socialshare  -->
 
         <div class="imgContainer">
             <div ng-controller="picModalCtrl as picModalCtrl" ng-if="detailItem.isVideo == 'No'">
@@ -16,7 +21,7 @@
                 <youtube videoid="{{detailItem.YouTubeID}}"></youtube>
             </div>
         </div>
-        
+
         <div class="product_name">{{detailItem.Product}}</div>
         
         <div class="product_modelNbr" ng-if="detailItem.ModelNbr">Model: {{detailItem.ModelNbr}}</div>
