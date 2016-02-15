@@ -16,6 +16,9 @@ function ProductsCtrl($rootScope, utility, logger)
 	vm.detailItem = null;
 	vm.callingPage = null;
 	vm.lastOffset = 0;
+	vm.socialShareText = '';
+	vm.socialShareUrl = '';
+	//vm.facebookAppId = '1764896063733620';
 	
 	function indexofCategory(categories, category)
 	{
@@ -35,7 +38,7 @@ function ProductsCtrl($rootScope, utility, logger)
 		vm.callingPage = $rootScope.activeMenuItem;
 		$rootScope.detailItem = item;
 		$rootScope.activeMenuItem = 'ItemDetail';
-		
+			
 		vm.lastOffset = $(window.pageYOffset);
 		var topOfMainMenu = 125; // TODO: get actual.
 		utility.scrollMainWindowAnimated(topOfMainMenu);
@@ -113,11 +116,12 @@ function ProductsShowcaseDirective(logger)
 	}
 }
 
-function ProductDetailDirective($rootScope, logger)
+function ProductDetailDirective($rootScope, $location, base64, logger)
 {
 	var directive =
 	{
 		restrict : 'E',
+		//scope: {},  // Add this line to create an isolated scope
 	    replace: true, // Replace with the template.
 	    transclude: true, // we want to insert custom content inside the directive
 		templateUrl: "app/components/products/productDetail.tpl.html",
@@ -131,6 +135,22 @@ function ProductDetailDirective($rootScope, logger)
 	function linkFunc(scope, element, attrs, prodCtrl)
 	{
 		prodCtrl.detailItem = $rootScope.detailItem;
+
+		var itemId = base64.encode(prodCtrl.detailItem.Product + ':' + prodCtrl.detailItem.ModelNbr);
+		var itemDescription = prodCtrl.detailItem.Product;
+		if (siteName == 'BRFO')
+		{
+			itemDescription += ' in the ' + prodCtrl.detailItem.Categories + ' section at Black River Furniture Outlet.';
+			prodCtrl.socialShareUrl = 'http://blackriverfurnitureoutlet.com?item=' + itemId;
+		}
+		else
+		{
+			itemDescription += ' in the ' + prodCtrl.detailItem.Categories + ' section at Black River Surplus Outlet.';
+			prodCtrl.socialShareUrl = 'http://www.blackriversurplus.com?item=' + itemId;
+		}
+
+		prodCtrl.socialShareText = 'Check out the awesome ' + itemDescription;
+		//prodCtrl.socialShareUrl = $location.url('/') + '?item=' + itemId;
 	}
 }
 
