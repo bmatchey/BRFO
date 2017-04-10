@@ -16,6 +16,7 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, $http, settings, base64, u
 	vm.siteName = siteName;
 	vm.backgroundPic = '';
 	vm.missionStatement = '';
+	vm.homepageScroller = '';
 	vm.maxShowcase = 16;
 	
 	// Load our local JSON copy first, then load the Google spreadsheet for the most recent data.  If Google fails, we are still running.
@@ -105,6 +106,10 @@ function GoogleDocsCtrl($timeout, $rootScope, $scope, $http, settings, base64, u
 			else if (args[i].Setting == 'MissionStatement' && args[i].Site == siteName)
 			{
 				vm.missionStatement = args[i].Value;
+			}
+			else if (args[i].Setting == 'HomepageScroller' && args[i].Site == siteName)
+			{
+				vm.homepageScroller = args[i].Value;
 			}
 			else if (args[i].Setting == 'MaxShowcase' && args[i].Site == siteName)
 			{
